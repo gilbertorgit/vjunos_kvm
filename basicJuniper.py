@@ -206,7 +206,7 @@ class BasicJuniper:
 
                     vm_img = f'{hostname}.qcow2'
 
-                    copy_vm = f'cp {self.source_images}vjunos-switch-{version}/vjunos-switch*.qcow2 ' \
+                    copy_vm = f'cp {self.source_images}vjunos-switch-{version}/*.qcow2 ' \
                                 f'{self.libvirt_images_path}{vm_img}'
 
                     subprocess.call(copy_vm, shell=True)
@@ -243,7 +243,7 @@ class BasicJuniper:
 
                     vm_img = f'{hostname}.qcow2'
 
-                    copy_vm = f'cp {self.source_images}apstra-{version}/aos_server*.qcow2 ' \
+                    copy_vm = f'cp {self.source_images}apstra-{version}/*.qcow2 ' \
                                   f'{self.libvirt_images_path}{vm_img}'
 
                     subprocess.call(copy_vm, shell=True)
@@ -307,7 +307,7 @@ class BasicJuniper:
                     subprocess.call(create_disk_config, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
 
                     vm_img = f'{hostname}.qcow2'
-                    copy_vm = f'cp {self.source_images}vjunos-evolved-{version}/vJunosEvolved*.qcow2 ' \
+                    copy_vm = f'cp {self.source_images}vjunos-evolved-{version}/*.qcow2 ' \
                                 f'{self.libvirt_images_path}{vm_img}'
 
                     subprocess.call(copy_vm, shell=True)
