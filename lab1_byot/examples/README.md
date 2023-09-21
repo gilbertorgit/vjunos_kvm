@@ -49,17 +49,17 @@ Consider these use cases to determine the appropriate configuration option based
 
 <p align="center">
   Example 1 - DC 5-Clos with vjunos-switch, VR vSRX3 (Simulate Customers) and Apstra
-  <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example2.png">
+  <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example1.png">
   
   Example 2 - DC with vjunos-switch, VR vSRX3 (Simulate Customers)
-  <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example3.png">
+  <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example2.png">
 
   Example 3 - DC 3-Clos with vjunos-switch, VR vSRX3 (Simulate Customers) and Apstra
-  <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example5.png">
+  <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example3.png">
 
   Example 4 - DC 3-Clos with vjunos-evolved, VR vSRX3 (Simulate Customers) and Apstra
-  <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example8.png">
+  <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example4.png">
 
   Example 5 - DC 3-Clos with vjunos-evolved, VR vSRX3 (Simulate Customers) and Apstra
-  <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example9.png">
+  <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example5.png">
 </p>
