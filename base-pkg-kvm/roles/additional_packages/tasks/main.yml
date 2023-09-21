@@ -1,0 +1,23 @@
+    - name: Install Additional Packages
+      apt:
+       name:
+        - ntp
+        - net-tools
+        - python-netifaces
+        - python3-netifaces
+        - libyaml-dev
+        - python3-yaml
+        - numactl
+        - libparted-dev
+        - libpciaccess-dev
+        - libnuma-dev
+        - libyajl-dev
+        - libxml2-dev
+        - libglib2.0-dev
+        - libnl-3-dev
+        - python3-pip
+        - python3.10-dev
+        - libxslt1-dev
+        - pwgen
+        - genisoimage
+       state: present

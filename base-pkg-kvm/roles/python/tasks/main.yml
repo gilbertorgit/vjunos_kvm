@@ -1,0 +1,13 @@
+    - name: Install Python
+      apt:
+        name:
+          - python3.10
+          - python3.10-dev
+          - python3.10-venv
+        state: present
+    - name: Remove Pexpect Conflicts
+      apt:
+        name:
+          - python-pexpect
+          - python3-pexpect
+        state: absent

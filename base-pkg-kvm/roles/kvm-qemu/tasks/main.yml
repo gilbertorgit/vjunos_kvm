@@ -1,0 +1,13 @@
+    - name: Install KVM-QEMU
+      apt:
+        name:
+          - qemu
+          - qemu-kvm
+          - libvirt-daemon
+          - libvirt-daemon-system
+          - virtinst
+          - bridge-utils
+          - virt-manager
+          - libguestfs-tools
+          - libvirt-clients
+        state: present
