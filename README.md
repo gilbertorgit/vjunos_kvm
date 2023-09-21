@@ -154,14 +154,14 @@ For example:
 ```
 mkdir /opt/src_virtual_lab_images/apstra-4.1.2-269
 mkdir /opt/src_virtual_lab_images/linux
-mkdir /opt/src_virtual_lab_images/vjunos-switch-23.1R1.8
+mkdir /opt/src_virtual_lab_images/vjunos-switch-23.2R1.14
 mkdir /opt/src_virtual_lab_images/vsrx3-23.1R1.8
-mkdir /opt/src_virtual_lab_images/vjunos-evolved-23.1R1.8
+mkdir /opt/src_virtual_lab_images/vjunos-evolved-23.2R1.15
 
 mv CentOS-7-x86_64-GenericCloud.qcow2 /opt/src_virtual_lab_images/linux
 mv junos-vsrx3-x86-64-23.1R1.8.qcow2 /opt/src_virtual_lab_images/vsrx3-23.1R1.8
-mv vjunos-switch-23.1R1.8.qcow2 /opt/src_virtual_lab_images/vjunos-switch-23.1R1.8
-mv vJunosEvolved-23.1R1.8.qcow2  /opt/src_virtual_lab_images/vjunos-evolved-23.1R1.8
+mv vjunos-switch-23.1R1.8.qcow2 /opt/src_virtual_lab_images/vjunos-switch-23.2R1.14
+mv vJunosEvolved-23.1R1.8.qcow2  /opt/src_virtual_lab_images/vjunos-evolved-23.2R1.15
 
 gunzip aos_server_4.1.2-269.qcow2.gz
 mv aos_server_4.1.2-269.qcow2 /opt/src_virtual_lab_images/apstra-4.1.2-269
@@ -170,18 +170,18 @@ mv aos_server_4.1.2-269.qcow2 /opt/src_virtual_lab_images/apstra-4.1.2-269
 **Below is an example of the directory tree structure with a few directories:**
 
 ```
-root@lab:~# ls -lR /opt/src_virtual_lab_images/
+root@kvm-server:/home/lab/vjunos_kvm# ls -lR /opt/src_virtual_lab_images/
 /opt/src_virtual_lab_images/:
-total 24
-drwxr-xr-x 2 root root 4096 Jun 15 19:20 apstra-4.1.2-269
-drwxr-xr-x 2 root root 4096 Jun 15 19:18 linux
-drwxr-xr-x 2 root root 4096 Jun 15 19:22 vjunos-evolved-23.1R1.8
-drwxr-xr-x 2 root root 4096 Jun 15 19:19 vjunos-switch-23.1R1.8
-drwxr-xr-x 2 root root 4096 Jun 15 19:22 vsrx3-23.1R1.8
+total 1110328
+drwxr-xr-x 2 root root       4096 Jun 19 10:51 apstra-4.1.2-269
+drwxr-xr-x 2 root root       4096 Jun 19 10:49 linux
+drwxr-xr-x 2 root root       4096 Sep 21 13:54 vjunos-evolved-23.2R1.15
+drwxr-xr-x 2 root root       4096 Sep 21 13:57 vjunos-switch-23.2R1.14
+drwxr-xr-x 2 root root       4096 Jun 19 10:49 vsrx3-23.1R1.8
 
 /opt/src_virtual_lab_images/apstra-4.1.2-269:
 total 2762612
--rw-r--r-- 1 root root 2828908544 Jan 12 00:01 aos_server_4.1.2-269.qcow2
+-rw-r--r-- 1 root root 2828908544 Jan 12  2023 aos_server_4.1.2-269.qcow2
 
 /opt/src_virtual_lab_images/linux:
 total 881732
@@ -191,9 +191,9 @@ total 881732
 total 1865604
 -rw-r--r-- 1 root root 1910374400 May  9 19:00 vJunosEvolved-23.1R1.8.qcow2
 
-/opt/src_virtual_lab_images/vjunos-switch-23.1R1.8:
-total 3867844
--rw-r--r-- 1 root root 3960668160 Apr 18 07:00 vjunos-switch-23.1R1.8.qcow2
+/opt/src_virtual_lab_images/vjunos-evolved-23.2R1.15:
+total 1701124
+-rw-r--r-- 1 root root 1741946880 Aug  3 06:32 vJunosEvolved-23.2R1.15.qcow2
 
 /opt/src_virtual_lab_images/vsrx3-23.1R1.8:
 total 828420
