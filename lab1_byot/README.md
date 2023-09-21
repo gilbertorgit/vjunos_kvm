@@ -5,18 +5,18 @@
 **gilbertorgit**
 
 ## Important Information
-- The python script provided in this guide allows for the creation, deletion, start, and stop of all resources within the topology.
-- It is crucial to maintain the names and file paths exactly as shown here to avoid potential issues.
-- Ensure that you use the specified versions of the images, as using different versions may lead to complications.
-- Default username and password information:
+1. The python script provided in this guide allows for the creation, deletion, start, and stop of all resources within the topology.
+2. It is crucial to maintain the names and file paths exactly as shown here to avoid potential issues.
+3. Ensure that you use the specified versions of the images, as using different versions may lead to complications.
+4. Default username and password information:
   - root/juniper123
   - lab/lab123
-- You can modify these credentials by editing the python script.
-- Lab Network IP and Interface information:
+5. You can modify these credentials by editing the python script.
+6. Lab Network IP and Interface information:
   - 192.168.122.0/24 -> default KVM bridge network (You can modify it by editing the lab1_device_info.xlsx)
     - mgmt_ip - The IP used for device configuration on the KVM, configured using virbr0 - 192.168.122.
   - virbr0 - default KVM bridge interface
-- The script creates several virtual interfaces, which must also be configured accordingly in the .xlsx file. Examples of these virtual interfaces can be found in the provided topology.
+7. The script creates several virtual interfaces, which must also be configured accordingly in the .xlsx file. Examples of these virtual interfaces can be found in the provided topology.
   - S-X -> S-1/S-50: Virtual Interfaces for configuring core devices.
     - The script offers an option to automatically configure point-to-point (p2p) interfaces in the main routers. It will search for these interfaces to configure the p2p connections.
   - D-X -> D-1/D-50: Virtual Interfaces for configuring DataCenter devices and/or VR Devices (e.g., servers, routers with routing-instances configured to simulate CEs, etc.).
@@ -25,7 +25,6 @@
     - In this case, the script will not configure any p2p interfaces if D-X interfaces are detected.
   - dummy-X -> dummy-1/dummy-50: Interfaces for unused connections - No action needed, this is for informational purposes only.
   - fabric-X -> fabric-1/fabric-50: Used to connect vRE-vFPC on vMX Devices - No action needed, this is for informational purposes only.
-
 
 ## Prerequisites
 
@@ -105,24 +104,3 @@ python main.py
 Select one Option: 3 ->>> Will create from scratch
 ---------------------------
 ```
-
-## Workaround
-
-Due to unexpected reasons, often related to disk performance, the VMX may not boot properly at times, and you might encounter connectivity errors. These typically appear when the script is checking the connectivity and/or generating the baseline configuration to be saved into the virtual devices.
-
-You can verify this by attempting to log in via console as the "lab" user. If there's an issue, you might encounter an error like the one shown below: 
-```
-md9.uzip: UZIP(zlib) inflate() failed
-g_vfs_done():md9.uzip[READ(offset=75661312, length=2048)]error = 86
-vm_fault: pager read error, pid 23069 (cli)
-pid 23069 (cli), uid (0):  Path `/var/tmp/cli.core.4.gz' failed on initial open test, error = 14
-```
-
-If this is the case, there is no need to recreate the entire topology. However, you should reboot the affected devices one by one to resolve the issue. It is recommended to perform this process individually and then verify connectivity after each reboot.
-
-To do so, you must connect as a root user using console and reboot the VCP virtual image only. Here are the steps:
-
-1. Use the command virsh console <domain> (for example, lab1_vcp_r6)
-2. Enter the username and password (root/juniper123)
-3. Issue the reboot command"
-
