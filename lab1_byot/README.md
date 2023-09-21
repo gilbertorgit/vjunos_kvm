@@ -73,7 +73,7 @@ python main.py <option>
 * Please, check the examples folder where you can find further info and topology examples. You can just copy/past and have a ready-to-go topology
 
 ```
-cd /home/lab/virtual_lab_kvm/
+cd /home/lab/vjunos_kvm/
 
 source my-env/bin/activate
 
@@ -81,7 +81,7 @@ cd lab1_byot/
  
 python main.py
 ---------------------------
-(my-env) root@kvm-server:/home/lab/virtual_lab_kvm/lab1_byot# python main.py 
+(my-env) root@kvm-server:/home/lab/vjunos_kvm/lab1_byot# python main.py 
 1 - Start Topology
 
 2 - Stop Topology

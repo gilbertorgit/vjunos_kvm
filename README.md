@@ -14,9 +14,7 @@
 ### Current Virtual Lab Projects
 
 * lab1_byot -> Build your own Topology
-  * https://github.com/gilbertorgit/virtual_lab_kvm/tree/main/lab1_byot
-* lab3_apstra_dci -> Using new vJunos-Switch Image, vMX and Apstra to configure DCI:
-  * https://github.com/gilbertorgit/virtual_lab_kvm/tree/main/lab3_apstra_dci
+  * https://github.com/gilbertorgit/vjunos_kvm/tree/main/lab1_byot
 
 ## Very Important Info! 
 * This project assumes that you have recompiled your kernel and removed the BR_GROUPFWD_RESTRICTED options. 
@@ -72,9 +70,9 @@ apt -y update
 
 apt -y install ansible git
 
-git clone https://github.com/gilbertorgit/virtual_lab_kvm.git
+git clone https://github.com/gilbertorgit/vjunos_kvm.git
 
-ansible-playbook virtual_lab_kvm/base-pkg-kvm/playbook.yml
+ansible-playbook vjunos_kvm/base-pkg-kvm/playbook.yml
 ```
 
 **check kvm**
@@ -84,7 +82,7 @@ kvm-ok
 ```
 
 ```
-cd virtual_lab_kvm/
+cd vjunos_kvm/
 
 python3.10 -m venv my-env
 
@@ -204,6 +202,5 @@ total 828420
 
 ## For detailed instructions, please refer to the specific lab README.
 
-* lab1_byot -> https://github.com/gilbertorgit/virtual_lab_kvm/tree/main/lab1_byot
-* lab3_apstra_dci -> https://github.com/gilbertorgit/virtual_lab_kvm/tree/main/lab3_apstra_dci
+* lab1_byot -> https://github.com/gilbertorgit/vjunos_kvm/tree/main/lab1_byot
 

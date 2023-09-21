@@ -58,29 +58,29 @@ Consider these use cases to determine the appropriate configuration option based
 
 <p align="center">
   Example 1 - DC 3-Clos with vjunos-switch, Core with vMX, VR vSRX3 (Router Reflector and Customers), Apstra and CentOS Linux
-  <img src="https://github.com/gilbertorgit/virtual_lab_kvm/blob/main/lab1_byot/images/example1.png">
+  <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example1.png">
   
   Example 2 - DC 5-Clos with vjunos-switch, VR vSRX3 (Simulate Customers) and Apstra
-  <img src="https://github.com/gilbertorgit/virtual_lab_kvm/blob/main/lab1_byot/images/example2.png">
+  <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example2.png">
   
   Example 3 - DC with vjunos-switch, VR vSRX3 (Simulate Customers)
-  <img src="https://github.com/gilbertorgit/virtual_lab_kvm/blob/main/lab1_byot/images/example3.png">
+  <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example3.png">
   
   Example 4 - Core with vMX and VR vSRX3 (Simulate Customers)
-  <img src="https://github.com/gilbertorgit/virtual_lab_kvm/blob/main/lab1_byot/images/example4.png">
+  <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example4.png">
   
   Example 5 - DC 3-Clos with vjunos-switch, VR vSRX3 (Simulate Customers) and Apstra
-  <img src="https://github.com/gilbertorgit/virtual_lab_kvm/blob/main/lab1_byot/images/example5.png">
+  <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example5.png">
   
   Example 6 - Small Core with vMX and VR vSRX3 (Simulate Customers)
-  <img src="https://github.com/gilbertorgit/virtual_lab_kvm/blob/main/lab1_byot/images/example6.png">
+  <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example6.png">
   
   Example 7 - Core with vMX and VR vSRX3 (Simulate Customers)
-  <img src="https://github.com/gilbertorgit/virtual_lab_kvm/blob/main/lab1_byot/images/example7.png">
+  <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example7.png">
 
   Example 8 - DC 3-Clos with vjunos-evolved, VR vSRX3 (Simulate Customers) and Apstra
-  <img src="https://github.com/gilbertorgit/virtual_lab_kvm/blob/main/lab1_byot/images/example8.png">
+  <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example8.png">
 
   Example 9 - DC 3-Clos with vjunos-evolved, VR vSRX3 (Simulate Customers) and Apstra
-  <img src="https://github.com/gilbertorgit/virtual_lab_kvm/blob/main/lab1_byot/images/example9.png">
+  <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example9.png">
 </p>
