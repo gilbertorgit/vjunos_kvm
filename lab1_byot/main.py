@@ -6,6 +6,7 @@
 """
 
 import sys
+sys.path.append('../')
 from time import sleep, time
 from basicInfra import BasicInfra
 from basicJuniper import BasicJuniper
@@ -13,12 +14,11 @@ from generateData import GenerateData
 from devicesConsoleConfig import DevicesConfig
 from configureJuniperDevice import ConfigureJuniperDevice
 
-sys.path.append('../')
 
 # Constants
 BRIDGE_ECHO = 65535
 INTERFACE_START = 1
-INTERFACE_STOP = 51
+INTERFACE_STOP = 101
 DEVICE_TAB_LIST = ('SRX', 'VEX', 'VEVO', 'APSTRA', 'LINUX')
 
 
