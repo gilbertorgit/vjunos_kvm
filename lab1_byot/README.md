@@ -101,3 +101,5 @@ python main.py
 Select one Option: 3 ->>> Will create from scratch
 ---------------------------
 ```
+## Tip - How to build your topology:
+Check below a few tips to create a topology from scratch
