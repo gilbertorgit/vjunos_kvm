@@ -103,3 +103,4 @@ Select one Option: 3 ->>> Will create from scratch
 ```
 ## Tip - How to build your topology:
 Check below a few tips to create a topology from scratch
+https://github.com/gilbertorgit/vjunos_kvm/tree/main/lab1_byot/how_to
