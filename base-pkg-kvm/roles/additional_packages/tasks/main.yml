@@ -3,7 +3,6 @@
        name:
         - ntp
         - net-tools
-        - python-netifaces
         - python3-netifaces
         - libyaml-dev
         - python3-yaml
