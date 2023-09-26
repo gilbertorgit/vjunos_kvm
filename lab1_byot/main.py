@@ -7,19 +7,20 @@
 
 import sys
 from time import sleep, time
-
-sys.path.append('../')
 from basicInfra import BasicInfra
 from basicJuniper import BasicJuniper
 from generateData import GenerateData
 from devicesConsoleConfig import DevicesConfig
 from configureJuniperDevice import ConfigureJuniperDevice
 
+sys.path.append('../')
+
 # Constants
 BRIDGE_ECHO = 65535
 INTERFACE_START = 1
 INTERFACE_STOP = 51
 DEVICE_TAB_LIST = ('SRX', 'VEX', 'VEVO', 'APSTRA', 'LINUX')
+
 
 class MainScript:
     """
@@ -35,10 +36,18 @@ class MainScript:
         """
         self.interface_sets = [
             {'interfaces': "S-", 'start': INTERFACE_START, 'stop': INTERFACE_STOP},
-            {'interfaces': "D-", 'start': INTERFACE_START, 'stop': INTERFACE_STOP},
             {'interfaces': "dummy-", 'start': INTERFACE_START, 'stop': INTERFACE_STOP},
             {'interfaces': "fabric-", 'start': INTERFACE_START, 'stop': INTERFACE_STOP},
         ]
+
+        """
+         self.interface_sets = [
+             {'interfaces': "S-", 'start': INTERFACE_START, 'stop': INTERFACE_STOP},
+             {'interfaces': "D-", 'start': INTERFACE_START, 'stop': INTERFACE_STOP},
+             {'interfaces': "dummy-", 'start': INTERFACE_START, 'stop': INTERFACE_STOP},
+             {'interfaces': "fabric-", 'start': INTERFACE_START, 'stop': INTERFACE_STOP},
+         ]
+        """
 
     def create_logical_interfaces(self, vinfra, bridge_echo=None):
         """
@@ -193,7 +202,6 @@ class MainScript:
                         print(f"Error: {e}")
                 else:
                     print(f"Unknown type: {name}")
-
 
         # Check connectivity
         vlab1conf = DevicesConfig()

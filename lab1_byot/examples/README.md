@@ -35,12 +35,14 @@ The VR and DC roles are reserved for future use and are currently not utilized b
 
 Use cases:
 * When a topology has no 'CORE' roles, no configuration will be applied. 
-  * Example 2
+  * Example 1
+  * Example 3
+  * Example 4
 * When a topology has 'CORE' and at least 1 element with 'CORE, REFLECTOR', any option can be used. 
   * Using Options 5, 'CORE' devices will establish peering with 'CORE, REFLECTOR' devices.
+    * Example 5
   * Using Options 8, you can configure only P2P and Loopback interfaces, which can be ideal for setting up the baseline in a Spine/Leaf Topology. 
-    * Example 3
-    * Example 9
+    * Example 2
 
 These use cases outline different scenarios and options based on the roles assigned in the topology. 
 Consider these use cases to determine the appropriate configuration option based on the specific setup of your network.
@@ -51,7 +53,7 @@ Consider these use cases to determine the appropriate configuration option based
   Example 1 - DC 5-Clos with vjunos-switch, VR vSRX3 (Simulate Customers) and Apstra
   <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example1.png">
   
-  Example 2 - DC with vjunos-switch, VR vSRX3 (Simulate Customers)
+  Example 2 - DC with vjunos-switch, VR vSRX3 (Simulate Customers) and Apstra
   <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example2.png">
 
   Example 3 - DC 3-Clos with vjunos-switch, VR vSRX3 (Simulate Customers) and Apstra
