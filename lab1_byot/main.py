@@ -399,7 +399,7 @@ if __name__ == "__main__":
               a.configure_interfaces_topology_iso),
         '8': ("Configure Interfaces only - Basic P2P and Loopback interfaces", a.configure_interfaces_topology),
         '9': ("Load Baseline Config - Overwrite current configuration with baseline config", a.configure_baseline),
-        '10': ("Save Config", a.get_device_config),
+        '10': ("Save Config Locally", a.get_device_config),
         '11': ("Create Router baseline config", a.save_baseline),
     }
 

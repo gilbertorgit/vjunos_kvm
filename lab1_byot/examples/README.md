@@ -6,11 +6,9 @@
 
 ## Description
 To create a baseline configuration, there are two essential elements to consider:
-1. S-Xs Interfaces
-2. Devices with CORE and/or REFLECTOR roles (refer to the spreadsheet for details)
+1. Devices with CORE and/or REFLECTOR roles (refer to the spreadsheet for details)
 
-When a device is configured with S-Xs interfaces, the script is capable of configuring P2P physical addresses using IPv4 /31 and IPv6 /127 subnets.
-Moreover, when a device has the 'CORE' and/or 'REFLECTOR' role assigned, additional configuration options are available.
+When a device is configured with 'CORE' and/or 'REFLECTOR' role assigned, the script is capable of configuring P2P physical addresses using IPv4 /31 and IPv6 /127 subnets and additional configuration options are available, such as - topology based on ISIS, OSPF with MPLS enabled, etc., 
 
 By combining these elements, you gain the ability to create a comprehensive baseline configuration. 
 Refer to Options 5, 6, 7, and 8 for further details.
