@@ -17,7 +17,7 @@
   <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/how_to_2.png">
 </p>
 
-3. Replicate it to spreadsheet
+3. Replicate it to spreadsheet - Please, use the Examples as template! Don't change/add anything apart from new lines based on specific TAB examples
    - as a good practice, create inside the example folders
 
 <p align="center">
