@@ -238,6 +238,13 @@ interfaces {{
         nlsd enable;
     }}
 }}
+chassis {{
+    fpc 0 {{
+        pic 0 {{
+            number-of-ports 20;
+        }}
+    }}
+}}
 interfaces {{
     fxp0 {{
         unit 0 {{
@@ -245,12 +252,6 @@ interfaces {{
                 address {mgmt_ip}/24;
             }}
         }}
-    }}
-}}
-protocols {{
-    lldp {{
-        port-id-subtype interface-name;
-        interface all;
     }}
 }}
 

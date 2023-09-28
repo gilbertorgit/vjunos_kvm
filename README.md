@@ -118,6 +118,7 @@ shutdown -r now
 
 * vSRX: https://support.juniper.net/support/downloads/?p=vsrx3
 * vEX -> vJunos-Switch: https://support.juniper.net/support/downloads/?p=vjunos
+* vMX -> vJunos-Router: TBC
 * Apstra - > AOS: https://support.juniper.net/support/downloads/?p=apstra
 * Linux -> Centos-Generic-Cloud: https://cloud.centos.org/centos/7/images/ - CentOS-7-x86_64-GenericCloud.qcow2
 * vJunosEvolved -> https://support.juniper.net/support/downloads/?p=vjunos-evolved
@@ -136,7 +137,7 @@ This automation script provides support for multiple virtual image flavors and v
 
 * To configure different versions, please follow these steps:
   * Create a directory for the specific version and copy the corresponding images into it. 
-  * Add a 'version' column in the labX_device_info.xlsx file."
+  * Add a 'version' column in the labX_device_info.xlsx file.
 
 Here as you can see I'm creating a vMX and vSRX specific folder inside the image folders:
 
@@ -144,7 +145,7 @@ For vSRX:
 * Create the folder using the following command:
   * mkdir /opt/src_virtual_lab_images/vsrx-<version>
     * 'vsrx-' is a constant name.
-    * <version> is the specific version of vSRX.
+    * '<version>' is the specific version of vSRX.
 
 For example:
 * mkdir /opt/src_virtual_lab_images/vsrx-23.1R1.8
@@ -155,13 +156,15 @@ For example:
 mkdir /opt/src_virtual_lab_images/apstra-4.1.2-269
 mkdir /opt/src_virtual_lab_images/linux
 mkdir /opt/src_virtual_lab_images/vjunos-switch-23.2R1.14
+mkdir /opt/src_virtual_lab_images/vjunos-router-23.2R1.14
 mkdir /opt/src_virtual_lab_images/vsrx3-23.1R1.8
 mkdir /opt/src_virtual_lab_images/vjunos-evolved-23.2R1.15
 
 mv CentOS-7-x86_64-GenericCloud.qcow2 /opt/src_virtual_lab_images/linux
 mv junos-vsrx3-x86-64-23.1R1.8.qcow2 /opt/src_virtual_lab_images/vsrx3-23.1R1.8
-mv vjunos-switch-23.1R1.8.qcow2 /opt/src_virtual_lab_images/vjunos-switch-23.2R1.14
-mv vJunosEvolved-23.1R1.8.qcow2  /opt/src_virtual_lab_images/vjunos-evolved-23.2R1.15
+mv vJunos-switch-23.2R1.14.qcow2 /opt/src_virtual_lab_images/vjunos-switch-23.2R1.14
+mv vJunos-router-23.2R1.14.qcow2 /opt/src_virtual_lab_images/vjunos-router-23.2R1.14
+mv vJunosEvolved-23.2R1.15.qcow2  /opt/src_virtual_lab_images/vjunos-evolved-23.2R1.15
 
 gunzip aos_server_4.1.2-269.qcow2.gz
 mv aos_server_4.1.2-269.qcow2 /opt/src_virtual_lab_images/apstra-4.1.2-269
