@@ -179,7 +179,9 @@ class BasicJuniper:
                     mgmt_int = i['mgmt_int']
                     mgmt_ip = i['mgmt_ip']
 
-                    int_values = {f'int{j}': i[f'ge-0/0/{j}'] for j in range(10)}
+                    # int_values = {f'int{j}': i[f'ge-0/0/{j}'] for j in range(10)}
+
+                    int_values = {f'int{j}': val for j, val in enumerate(i) if j.startswith('ge-')}
 
                     int_values, _ = self.update_interfaces(int_values, 'dummy_interfaces.txt')
 
