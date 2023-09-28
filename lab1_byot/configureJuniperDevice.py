@@ -35,8 +35,7 @@ class ConfigureJuniperDevice:
 
     def get_data(self):
 
-        # Need to update based on spreadsheet TABS - only these are supported at this moment
-        device_tab_list = ('SRX', 'VEX', 'VEVO')
+        device_tab_list = ('SRX', 'VROUTER', 'VEX', 'VEVO')
         vlab1_data = GenerateData()
         tab_list = device_tab_list
         vlab1_data.generate_data_info('../lab1_byot/lab1_device_info.xlsx', *tab_list)

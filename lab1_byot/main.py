@@ -19,7 +19,7 @@ from configureJuniperDevice import ConfigureJuniperDevice
 BRIDGE_ECHO = 65535
 INTERFACE_START = 1
 INTERFACE_STOP = 101
-DEVICE_TAB_LIST = ('SRX', 'VEX', 'VEVO', 'APSTRA', 'LINUX')
+DEVICE_TAB_LIST = ('SRX', 'VROUTER', 'VEX', 'VEVO', 'APSTRA', 'LINUX')
 
 
 class MainScript:
@@ -95,6 +95,7 @@ class MainScript:
 
         dict_list = [
             ('vsrx', vlab1_data.get_srx),
+            ('vrouter', vlab1_data.get_vrouter),
             ('vex', vlab1_data.get_vex),
             ('vevo', vlab1_data.get_vevo),
             ('apstra', vlab1_data.get_apstra),
@@ -148,12 +149,18 @@ class MainScript:
 
         # Shutdown vjunos-switch
 
-        if vex_dict:
-            vlab1.shutdown_vjunos_switch(vex_dict)
-            print("Wait 30 seconds to shutdown vjunos-switch")
-            self.countdown(30)
+        # if vex_dict:
+        #     vlab1.shutdown_vjunos(vex_dict)
+        #     print("Wait 30 seconds to shutdown vjunos-switch")
+        #     self.countdown(10)
 
         dict_list = self.create_data()
+
+        for name, data_dict in dict_list:
+            if data_dict:
+                vlab1.shutdown_vjunos(data_dict)
+                print("Wait 10 seconds to shutdown vjunos")
+                self.countdown(10)
 
         for name, data_dict in dict_list:
             if data_dict:

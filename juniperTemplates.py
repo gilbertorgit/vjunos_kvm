@@ -199,3 +199,60 @@ interfaces {{
 
 '''
         return data
+
+    def vjunos_router(self, hostname: str, mgmt_ip: str):
+
+        data = f'''system {{
+    host-name {hostname};
+    root-authentication {{
+        encrypted-password "$1$aic0re1C$iga3zkJvFaG7rP7tDP/P91";
+    }}
+    commit synchronize;
+    login {{
+        user lab {{
+            uid 2000;
+            class super-user;
+            authentication {{
+                encrypted-password "$1$aic0re1C$i719d/4ZQchOhadfrUQxR.";
+            }}
+        }}
+    }}
+    syslog {{
+        file interactive-commands {{
+            interactive-commands any;
+        }}
+        file messages {{
+            any notice;
+            authorization info;
+        }}
+    }}
+    services {{
+        ssh {{
+            root-login allow;
+        }}
+        netconf {{
+            ssh;
+        }}
+    }}
+    processes {{
+        nlsd enable;
+    }}
+}}
+interfaces {{
+    fxp0 {{
+        unit 0 {{
+            family inet {{
+                address {mgmt_ip}/24;
+            }}
+        }}
+    }}
+}}
+protocols {{
+    lldp {{
+        port-id-subtype interface-name;
+        interface all;
+    }}
+}}
+
+'''
+        return data

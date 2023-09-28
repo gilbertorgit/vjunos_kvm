@@ -17,8 +17,7 @@ class GenerateData:
 
     def __init__(self):
         # lab1_device_info.xlsx TABs
-        self._VMX = {}
-        self._VEXUNESTED = {}
+        self._VROUTER = {}
         self._SRX = {}
         self._VEX = {}
         self._VEVO = {}
@@ -56,8 +55,7 @@ class GenerateData:
                 }
 
             attribute_map = {
-                'VMX': '_VMX',
-                'VEXUNESTED': '_VEXUNESTED',
+                'VROUTER': '_VROUTER',
                 'SRX': '_SRX',
                 'VEX': '_VEX',
                 'VEVO': '_VEVO',
@@ -70,12 +68,8 @@ class GenerateData:
                 setattr(self, attribute_name, results)
 
     @property
-    def get_vmx(self):
-        return self._VMX
-
-    @property
-    def get_vexunested(self):
-        return self._VEXUNESTED
+    def get_vrouter(self):
+        return self._VROUTER
 
     @property
     def get_srx(self):
@@ -104,8 +98,7 @@ class GenerateData:
         :return:
         """
 
-        self._merged_data = self.get_vmx
-        self._merged_data.update(self.get_vexunested)
+        self._merged_data = self.get_vrouter
         self._merged_data.update(self.get_srx)
         self._merged_data.update(self.get_vex)
         self._merged_data.update(self.get_vevo)

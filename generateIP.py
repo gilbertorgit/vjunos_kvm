@@ -163,10 +163,10 @@ class GenerateIpAddr:
         count = 0
         hostname = ''
         mgmt_ip = ''
-        for key, value in merge_dict.items(): # key is the index (S-1,S-2), value is the IP (10.0.0.0, 10.0.0.1)
+        for key, value in merge_dict.items():
             for key1, value1 in db.items():
                 for i in value1['data']:
-                    if i['type'].upper() == 'VMX-VCP': #VEXUNESTED use the same flag vmx-vcp
+                    if i['type'].upper() == 'VROUTER':
                         hostname = i['hostname']
                         mgmt_ip = i['mgmt_ip']
 
@@ -182,8 +182,8 @@ class GenerateIpAddr:
                         hostname = i['hostname']
                         mgmt_ip = i['mgmt_ip']
 
-                    for k, v in i.items(): # k is the index: ge-0/0/0/et-0/0/0(VEVO), v is the value: S-1, S-2
-                        if str(key) == str(v): # here we compare the key(S-1) from p2p_ipv4_dict.items with v(S-1) from db.items
+                    for k, v in i.items():
+                        if str(key) == str(v):
                             """
                             - if equal and count == 0, it will get the fist IP from p2p_ipv4_dict per index:
                             S-1 (10.0.0.0, 10.0.0.1 ) -> 10.0.0.0
@@ -226,11 +226,11 @@ class GenerateIpAddr:
         count = 1
         for key, value in db.items():
             for i in value['data']:
-                if i['type'].upper() != 'VMX-VFP':
+                if i['type'].upper() != 'VROUTER':
                     hostname = i['hostname']
                     mgmt_ip = i['mgmt_ip']
                     role = i['role']
-                    # send IP to iso function to generate iso address based on loopback IP
+
                     iso_address = self.create_iso_address(merge_dict[f'{count}'][1])
                     self.core_loopback_ip_dict[hostname] = {
                         'hostname': hostname,

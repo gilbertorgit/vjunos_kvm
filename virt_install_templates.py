@@ -9,7 +9,7 @@
 def generate_virt_template_vsrx3(hostname, images_path, mgmt_int, int_values, vm_img, vm_config):
     network_bridges = []
     for int_key, int_val in int_values.items():
-        network_bridges.append(f'--network bridge={int_val},model=virtio')
+        network_bridges.append(f'--network bridge={int_val},model=virtio,mtu.size=9600')
     network_bridge_str = ' \\\n'.join(network_bridges)
 
     install_vm = f'''virt-install \\
@@ -45,7 +45,7 @@ def generate_virt_template_vsrx3(hostname, images_path, mgmt_int, int_values, vm
 def generate_virt_template_vex(hostname, images_path, mgmt_int, int_values, vm_img, vm_config):
     network_bridges = []
     for int_key, int_val in int_values.items():
-        network_bridges.append(f'--network bridge={int_val},model=virtio')
+        network_bridges.append(f'--network bridge={int_val},model=virtio,mtu.size=9600')
     network_bridge_str = ' \\\n'.join(network_bridges)
 
     install_vm = f'''virt-install \\
@@ -116,7 +116,7 @@ def generate_virt_template_vevo(hostname, images_path, mgmt_int, pfe_link, rpio_
                                 channelized):
     network_bridges = []
     for int_key, int_val in int_values.items():
-        network_bridges.append(f'--network bridge={int_val},model=virtio')
+        network_bridges.append(f'--network bridge={int_val},model=virtio,mtu.size=9600')
     network_bridge_str = ' \\\n'.join(network_bridges)
 
     install_vm = f'''virt-install \\
@@ -156,3 +156,29 @@ def generate_virt_template_vevo(hostname, images_path, mgmt_int, pfe_link, rpio_
 # --network bridge={int_values["int11"]},model=virtio'''
 
     return install_vm
+
+
+def generate_virt_template_vjunos_router(hostname, images_path, mgmt_int, int_values, vm_img, vm_config):
+    network_bridges = []
+    for int_key, int_val in int_values.items():
+        network_bridges.append(f'--network bridge={int_val},model=virtio,mtu.size=9600')
+    network_bridge_str = ' \\\n'.join(network_bridges)
+
+    install_vm = f'''virt-install \\
+--name {hostname} \\
+--accelerate \\
+--vcpus 4 \\
+--ram 6000 \\
+--import \\
+--autostart \\
+--noautoconsole \\
+--accelerate \\
+--os-variant ubuntu18.04 \\
+--nographics \\
+--serial pty \\
+--hvm --cpu IvyBridge,require=vmx \\
+--sysinfo smbios,system_product=VM-VMX,system.family=lab \\
+--disk path={images_path}{vm_img},cache=directsync,bus=virtio,size=10 \\
+--disk path={images_path}{vm_config},bus=usb,format=raw \\
+--network bridge={mgmt_int},model=virtio \\
+{network_bridge_str}'''

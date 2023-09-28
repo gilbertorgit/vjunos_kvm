@@ -226,6 +226,73 @@ class BasicJuniper:
 
                     sleep(10)
 
+    def create_vjunos_router(self, data):
+
+        """
+        Create vjunos-router(VMX) - Juniper
+        """
+
+        print("-" * 120)
+        print("-" * 50, "Creating vJunos-router")
+
+        a = BasicConfigTemplateJuniper()
+
+        db = data
+
+        for key, value in db.items():
+            for i in value['data']:
+                if i['type'] == 'vrouter':
+                    version = i['version']
+                    hostname = i['hostname']
+                    mgmt_int = i['mgmt_int']
+                    mgmt_ip = i['mgmt_ip']
+
+                    # Old fix interfaces columns
+                    # int_values = {f'int{j}': i[f'ge-0/0/{j}'] for j in range(10)}
+
+                    # variable interfaces columns
+                    int_values = {k: v for k, v in i.items() if k.startswith('ge-')}
+
+                    int_values, _ = self.update_interfaces(int_values, 'dummy_interfaces.txt')
+
+                    print("-" * 30, f"Creating: {hostname}/{mgmt_ip}")
+
+                    # Get template with variables
+                    config = a.vjunos_router(hostname, mgmt_ip)
+
+                    # Create a local file with config
+                    config_name = '../config/juniper.conf'
+                    to_file = open(config_name, 'w')
+                    to_file.write(config)
+                    to_file.close()
+
+                    # make-config.sh executable
+                    per_make_config = f'chmod 755 ../config/make-config.sh'
+                    subprocess.call(per_make_config, shell=True)
+
+                    # Define config disk name and generate disk
+                    vm_config = f'{hostname}.img'
+                    script_path = f'../config/make-config.sh'
+                    create_disk_config = f'{script_path} {config_name} {self.libvirt_images_path}{vm_config}'
+                    subprocess.call(create_disk_config, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
+
+                    vm_img = f'{hostname}.qcow2'
+
+                    copy_vm = f'cp {self.source_images}vjunos-router-{version}/*.qcow2 ' \
+                                f'{self.libvirt_images_path}{vm_img}'
+
+                    subprocess.call(copy_vm, shell=True)
+
+                    change_permission = f'chmod 755 {self.libvirt_images_path}*'
+                    subprocess.call(change_permission, shell=True)
+
+                    virt_data = generate_virt_template_vjunos_router(hostname, self.libvirt_images_path, mgmt_int,
+                                                           int_values, vm_img, vm_config)
+                    # pprint.pp(virt_data)  # to debug
+                    subprocess.run(virt_data, shell=True)
+
+                    sleep(10)
+
     def create_aos(self, data):
 
         """
@@ -406,20 +473,20 @@ class BasicJuniper:
 
                     handle_load_baseline(mgmt_ip, port, user, password, baseline_config)
 
-    def shutdown_vjunos_switch(self, data, port=22, user='lab', password='lab123'):
+    def shutdown_vjunos(self, data, port=22, user='lab', password='lab123'):
 
         """
         Shutdown vjunos-switch only
         """
         self.clean_ssh_hosts()
 
-        print("#" * 50, "Shutdown vJunos-Switch")
+        print("#" * 50, "Shutdown vJunos")
 
         db = data
 
         for key, value in db.items():
             for i in value['data']:
-                if i['type'].upper() == 'VEX':
+                if i['type'].upper() == 'VEX' or 'VROUTER' or 'VEVO':
                     hostname = i['hostname']
                     mgmt_ip = i['mgmt_ip']
                     print(f"- Shutdown: {hostname} \n")
