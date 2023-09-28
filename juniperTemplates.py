@@ -234,9 +234,6 @@ interfaces {{
             ssh;
         }}
     }}
-    processes {{
-        nlsd enable;
-    }}
 }}
 chassis {{
     fpc 0 {{

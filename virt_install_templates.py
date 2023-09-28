@@ -182,3 +182,5 @@ def generate_virt_template_vjunos_router(hostname, images_path, mgmt_int, int_va
 --disk path={images_path}{vm_config},bus=usb,format=raw \\
 --network bridge={mgmt_int},model=virtio \\
 {network_bridge_str}'''
+
+    return install_vm

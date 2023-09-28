@@ -238,7 +238,6 @@ class BasicJuniper:
         a = BasicConfigTemplateJuniper()
 
         db = data
-        print(db)
 
         for key, value in db.items():
             for i in value['data']:
@@ -288,8 +287,8 @@ class BasicJuniper:
                     subprocess.call(change_permission, shell=True)
 
                     virt_data = generate_virt_template_vjunos_router(hostname, self.libvirt_images_path, mgmt_int,
-                                                           int_values, vm_img, vm_config)
-                    # pprint.pp(virt_data)  # to debug
+                                                                     int_values, vm_img, vm_config)
+                    pprint.pp(virt_data)  # to debug
                     subprocess.run(virt_data, shell=True)
 
                     sleep(10)
