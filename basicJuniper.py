@@ -238,6 +238,7 @@ class BasicJuniper:
         a = BasicConfigTemplateJuniper()
 
         db = data
+        print(db)
 
         for key, value in db.items():
             for i in value['data']:

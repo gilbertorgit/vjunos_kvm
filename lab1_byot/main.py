@@ -192,6 +192,7 @@ class MainScript:
 
         device_list_map = {
             'vsrx': vlab1.create_srx,
+            'vrouter': vlab1.create_vjunos_router,
             'vex': vlab1.create_vex,
             'vevo': vlab1.create_vevo,
             'apstra': vlab1.create_aos,
