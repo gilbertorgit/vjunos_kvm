@@ -288,7 +288,7 @@ class BasicJuniper:
 
                     virt_data = generate_virt_template_vjunos_router(hostname, self.libvirt_images_path, mgmt_int,
                                                                      int_values, vm_img, vm_config)
-                    pprint.pp(virt_data)  # to debug
+                    #pprint.pp(virt_data)  # to debug
                     subprocess.run(virt_data, shell=True)
 
                     sleep(10)
