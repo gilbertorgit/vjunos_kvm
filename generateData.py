@@ -55,21 +55,6 @@ class GenerateData:
                     'data': data
                 }
 
-            # if tab_name == 'VMX':
-            #     self._VMX = results
-            # if tab_name == 'VEXUNESTED':
-            #     self._VEXUNESTED = results
-            # if tab_name == 'SRX':
-            #     self._SRX = results
-            # if tab_name == 'VEX':
-            #     self._VEX = results
-            # if tab_name == 'VEVO':
-            #     self._VEVO = results
-            # if tab_name == 'APSTRA':
-            #     self._APSTRA = results
-            # if tab_name == 'LINUX':
-            #     self._LINUX = results
-
             attribute_map = {
                 'VMX': '_VMX',
                 'VEXUNESTED': '_VEXUNESTED',

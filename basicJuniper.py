@@ -106,7 +106,11 @@ class BasicJuniper:
                     mgmt_int = i['mgmt_int']
                     mgmt_ip = i['mgmt_ip']
 
-                    int_values = {f'int{j}': i[f'ge-0/0/{j}'] for j in range(12)}
+                    # Old fix interfaces columns
+                    # int_values = {f'int{j}': i[f'ge-0/0/{j}'] for j in range(12)}
+
+                    # variable interfaces columns
+                    int_values = {k: v for k, v in i.items() if k.startswith('ge-')}
 
                     int_values, _ = self.update_interfaces(int_values, 'dummy_interfaces.txt')
 
@@ -168,9 +172,6 @@ class BasicJuniper:
 
         db = data
 
-        # old line
-        # --cpu SandyBridge,+erms,+smep,+fsgsbase,+pdpe1gb,+rdrand,+f16c,+osxsave,+dca,+pcid,+pdcm,+xtpr,+tm2,+est,+smx,+vmx,+ds_cpl,+monitor,+dtes64,+pbe,+tm,+ht,+ss,+acpi,+ds,+vme \
-
         for key, value in db.items():
             for i in value['data']:
                 if i['type'] == 'vex':
@@ -179,9 +180,11 @@ class BasicJuniper:
                     mgmt_int = i['mgmt_int']
                     mgmt_ip = i['mgmt_ip']
 
+                    # Old fix interfaces columns
                     # int_values = {f'int{j}': i[f'ge-0/0/{j}'] for j in range(10)}
 
-                    int_values = {f'int{j}': val for j, val in enumerate(i) if j.startswith('ge-')}
+                    # variable interfaces columns
+                    int_values = {k: v for k, v in i.items() if k.startswith('ge-')}
 
                     int_values, _ = self.update_interfaces(int_values, 'dummy_interfaces.txt')
 
@@ -283,7 +286,11 @@ class BasicJuniper:
                     pfe_link = self.get_and_remove_first_interface('fabric_interfaces.txt')
                     rpio_link = self.get_and_remove_first_interface('fabric_interfaces.txt')
 
-                    int_values = {f'int{j}': i[f'et-0/0/{j}'] for j in range(12)}
+                    # Old fix interfaces columns
+                    # int_values = {f'int{j}': i[f'et-0/0/{j}'] for j in range(12)}
+
+                    # variable interfaces columns
+                    int_values = {k: v for k, v in i.items() if k.startswith('et-')}
 
                     int_values, _ = self.update_interfaces(int_values, 'dummy_interfaces.txt')
 

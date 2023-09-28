@@ -122,15 +122,6 @@ def handle_create_baseline_config(mgmt_ip, port, user, password):
             user (str): The username to connect with.
             password (str): The password to connect with.
     """
-    # try:
-    #     dev = Device(host=mgmt_ip, port=int(port), user=user, password=password)
-    #
-    #     ss = StartShell(dev)
-    #     ss.open()
-    #     ss.run("cli -c 'show configuration | save baseline.conf'")
-    #     ss.close()
-    # except (ConnectionError, ConnectTimeoutError, NoValidConnectionsError) as err:
-    #     print(f'Cannot connect to device: {err}')
 
     for i in range(3):  # Will attempt to connect up to three times
         try:

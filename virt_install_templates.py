@@ -7,6 +7,10 @@
 
 
 def generate_virt_template_vsrx3(hostname, images_path, mgmt_int, int_values, vm_img, vm_config):
+    network_bridges = []
+    for int_key, int_val in int_values.items():
+        network_bridges.append(f'--network bridge={int_val},model=virtio')
+    network_bridge_str = ' \\\n'.join(network_bridges)
 
     install_vm = f'''virt-install \\
 --name {hostname} \\
@@ -20,18 +24,20 @@ def generate_virt_template_vsrx3(hostname, images_path, mgmt_int, int_values, vm
 --disk path={images_path}{vm_img},size=16,device=disk,bus=ide,format=qcow2 \\
 --disk path={images_path}{vm_config},bus=ide,format=raw,target=hdc,device=cdrom \\
 --network bridge={mgmt_int},model=virtio \\
---network bridge={int_values["int0"]},model=virtio \\
---network bridge={int_values["int1"]},model=virtio \\
---network bridge={int_values["int2"]},model=virtio \\
---network bridge={int_values["int3"]},model=virtio \\
---network bridge={int_values["int4"]},model=virtio \\
---network bridge={int_values["int5"]},model=virtio \\
---network bridge={int_values["int6"]},model=virtio \\
---network bridge={int_values["int7"]},model=virtio \\
---network bridge={int_values["int8"]},model=virtio \\
---network bridge={int_values["int9"]},model=virtio \\
---network bridge={int_values["int10"]},model=virtio \\
---network bridge={int_values["int11"]},model=virtio'''
+{network_bridge_str}'''
+
+# --network bridge={int_values["int0"]},model=virtio \\
+# --network bridge={int_values["int1"]},model=virtio \\
+# --network bridge={int_values["int2"]},model=virtio \\
+# --network bridge={int_values["int3"]},model=virtio \\
+# --network bridge={int_values["int4"]},model=virtio \\
+# --network bridge={int_values["int5"]},model=virtio \\
+# --network bridge={int_values["int6"]},model=virtio \\
+# --network bridge={int_values["int7"]},model=virtio \\
+# --network bridge={int_values["int8"]},model=virtio \\
+# --network bridge={int_values["int9"]},model=virtio \\
+# --network bridge={int_values["int10"]},model=virtio \\
+# --network bridge={int_values["int11"]},model=virtio'''
 
     return install_vm
 
@@ -40,7 +46,6 @@ def generate_virt_template_vex(hostname, images_path, mgmt_int, int_values, vm_i
     network_bridges = []
     for int_key, int_val in int_values.items():
         network_bridges.append(f'--network bridge={int_val},model=virtio')
-
     network_bridge_str = ' \\\n'.join(network_bridges)
 
     install_vm = f'''virt-install \\
@@ -109,6 +114,11 @@ def generate_virt_template_apstra(hostname, images_path, mgmt_int, vm_img):
 
 def generate_virt_template_vevo(hostname, images_path, mgmt_int, pfe_link, rpio_link, int_values, vm_img, vm_config,
                                 channelized):
+    network_bridges = []
+    for int_key, int_val in int_values.items():
+        network_bridges.append(f'--network bridge={int_val},model=virtio')
+    network_bridge_str = ' \\\n'.join(network_bridges)
+
     install_vm = f'''virt-install \\
 --name {hostname} \\
 --accelerate \\
@@ -129,17 +139,20 @@ def generate_virt_template_vevo(hostname, images_path, mgmt_int, pfe_link, rpio_
 --network bridge={rpio_link},model=virtio \\
 --network bridge={rpio_link},model=virtio \\
 --network bridge={pfe_link},model=virtio \\
---network bridge={int_values["int0"]},model=virtio \\
---network bridge={int_values["int1"]},model=virtio \\
---network bridge={int_values["int2"]},model=virtio \\
---network bridge={int_values["int3"]},model=virtio \\
---network bridge={int_values["int4"]},model=virtio \\
---network bridge={int_values["int5"]},model=virtio \\
---network bridge={int_values["int6"]},model=virtio \\
---network bridge={int_values["int7"]},model=virtio \\
---network bridge={int_values["int8"]},model=virtio \\
---network bridge={int_values["int9"]},model=virtio \\
---network bridge={int_values["int10"]},model=virtio \\
---network bridge={int_values["int11"]},model=virtio'''
+{network_bridge_str}'''
+
+#
+# --network bridge={int_values["int0"]},model=virtio \\
+# --network bridge={int_values["int1"]},model=virtio \\
+# --network bridge={int_values["int2"]},model=virtio \\
+# --network bridge={int_values["int3"]},model=virtio \\
+# --network bridge={int_values["int4"]},model=virtio \\
+# --network bridge={int_values["int5"]},model=virtio \\
+# --network bridge={int_values["int6"]},model=virtio \\
+# --network bridge={int_values["int7"]},model=virtio \\
+# --network bridge={int_values["int8"]},model=virtio \\
+# --network bridge={int_values["int9"]},model=virtio \\
+# --network bridge={int_values["int10"]},model=virtio \\
+# --network bridge={int_values["int11"]},model=virtio'''
 
     return install_vm

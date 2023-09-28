@@ -5,74 +5,10 @@
 ---------------------------------
 """
 
-from consoleTemplate import ConsoleConfig
 from subprocess import call, Popen, DEVNULL
-from time import sleep
-import os
-import pexpect
 
 
 class DevicesConfig:
-
-    def vmx_console_cfg(self, data):
-
-        print("########## Basic vMX MGMT Configuration - hostname and ip")
-
-        db = data
-        console = ConsoleConfig()
-
-        for key, value in db.items():
-            for i in value['data']:
-                if i['type'] == 'vmx-vcp':
-                    hostname = i['hostname']
-                    mgmt_ip = i['mgmt_ip']
-
-                    try:
-                        console.vmx_config(hostname, mgmt_ip)
-                    except pexpect.exceptions.TIMEOUT:
-                        print(f'Unable to configure: {hostname} with {mgmt_ip}! Please, configure it manually!!\n')
-                    except pexpect.exceptions.EOF:
-                        print(f'Unable to configure: {hostname} with {mgmt_ip}! Please, configure it manually!!\n')
-
-    def vsrx_console_cfg(self, data):
-
-        print("########## Basic vSRX3 MGMT Configuration - hostname and ip")
-
-        db = data
-        console = ConsoleConfig()
-
-        for key, value in db.items():
-            for i in value['data']:
-                if i['type'] == 'vsrx3':
-                    hostname = i['hostname']
-                    mgmt_ip = i['mgmt_ip']
-
-                    try:
-                        console.vsrx3_config(hostname, mgmt_ip)
-                    except pexpect.exceptions.TIMEOUT:
-                        print(f'Unable to configure: {hostname} with {mgmt_ip}! Please, configure it manually!!\n')
-                    except pexpect.exceptions.EOF:
-                        print(f'Unable to configure: {hostname} with {mgmt_ip}! Please, configure it manually!!\n')
-
-    def vswitch_console_cfg(self, data):
-
-        print("########## Basic vJunos-Switch MGMT Configuration - hostname and ip")
-
-        db = data
-        console = ConsoleConfig()
-
-        for key, value in db.items():
-            for i in value['data']:
-                if i['type'] == 'vex':
-                    hostname = i['hostname']
-                    mgmt_ip = i['mgmt_ip']
-
-                    try:
-                        console.vex_config(hostname, mgmt_ip)
-                    except pexpect.exceptions.TIMEOUT:
-                        print(f'Unable to configure: {hostname} with {mgmt_ip}! Please, configure it manually!!\n')
-                    except pexpect.exceptions.EOF:
-                        print(f'Unable to configure: {hostname} with {mgmt_ip}! Please, configure it manually!!\n')
 
     @staticmethod
     def ping_device(hostname, mgmt_ip):
