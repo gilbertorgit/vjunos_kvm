@@ -62,4 +62,7 @@ Consider these use cases to determine the appropriate configuration option based
 
   Example 5 - DC 3-Clos with vjunos-evolved, VR vSRX3 (Simulate Customers) and Apstra
   <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example5.png">
+
+  Example 6 - DC 3-Clos with vjunos-switch and vjunos-evolved, Core with vjunos-router, VR vSRX3 (Router Reflector and Customers), Apstra and CentOS Linux
+  <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example6.png">
 </p>
