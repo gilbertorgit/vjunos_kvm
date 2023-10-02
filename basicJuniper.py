@@ -419,7 +419,7 @@ class BasicJuniper:
         db = data
         for key, value in db.items():
             for i in value['data']:
-                if i['type'].upper() == 'VEX' or i['type'].upper() == 'VMX-VCP' \
+                if i['type'].upper() == 'VEX' or i['type'].upper() == 'VROUTER' \
                         or i['type'].upper() == 'VSRX3' or i['type'].upper() == 'VEVO':
                     hostname = i['hostname']
                     mgmt_ip = i['mgmt_ip']
@@ -440,7 +440,7 @@ class BasicJuniper:
         db = data
         for key, value in db.items():
             for i in value['data']:
-                if i['type'].upper() == 'VEX' or i['type'].upper() == 'VMX-VCP' \
+                if i['type'].upper() == 'VEX' or i['type'].upper() == 'VROUTER' \
                         or i['type'].upper() == 'VSRX3' or i['type'].upper() == 'VEVO':
                     hostname = i['hostname']
                     mgmt_ip = i['mgmt_ip']
@@ -462,7 +462,7 @@ class BasicJuniper:
 
         for key, value in db.items():
             for i in value['data']:
-                if i['type'].upper() == 'VEX' or i['type'].upper() == 'VMX-VCP' \
+                if i['type'].upper() == 'VEX' or i['type'].upper() == 'VROUTER' \
                         or i['type'].upper() == 'VSRX3' or i['type'].upper() == 'VEVO':
                     hostname = i['hostname']
                     mgmt_ip = i['mgmt_ip']

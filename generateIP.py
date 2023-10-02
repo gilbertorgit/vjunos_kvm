@@ -226,7 +226,7 @@ class GenerateIpAddr:
         count = 1
         for key, value in db.items():
             for i in value['data']:
-                if i['type'].upper() != 'VROUTER':
+                if i['type'].upper() != 'VMX-VFP':
                     hostname = i['hostname']
                     mgmt_ip = i['mgmt_ip']
                     role = i['role']
