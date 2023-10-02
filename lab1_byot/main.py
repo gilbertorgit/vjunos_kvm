@@ -16,7 +16,8 @@ from configureJuniperDevice import ConfigureJuniperDevice
 
 
 # Constants
-BRIDGE_ECHO = 65535
+BRIDGE_ECHO = 16384
+#BRIDGE_ECHO = 65535
 INTERFACE_START = 1
 INTERFACE_STOP = 101
 DEVICE_TAB_LIST = ('SRX', 'VROUTER', 'VEX', 'VEVO', 'APSTRA', 'LINUX')
