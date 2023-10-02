@@ -1,8 +1,12 @@
-# Virtual Lab KVM(virt-install) Topologies  
+# vJunos KVM
+
+vjunos_kvm -> Is a collection of Python scripts that facilitates the creation of virtual topology using Juniper virtual devices based on KVM (virt-install) environment. 
+We are not reinventing the wheel it is just a personal project to help deploying VMs on vanilla KVM environment.
 
 * Supported Images:
   * vjunos-switch
-  * vJunosEvolved
+  * vjunos-router
+  * vJunos-Evolved
   * vSRX3
   * Apstra
   * CentOS
