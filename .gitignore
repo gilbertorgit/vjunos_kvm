@@ -4,3 +4,4 @@ test_general.py
 /lab3_apstra_dci/lab3_device_info_bkp_vm.xlsx
 verify_interfaces_uksm.sh
 /lab2_l2vpn/
+.gitignore
