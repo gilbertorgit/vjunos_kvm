@@ -17,7 +17,7 @@ from pprint import pprint
 class GenerateIpAddr:
 
     def __init__(self, number_int, count, p2p_ipv4 ='10.0.0.0/23', loopback_ipv4 ='10.10.10.0/24',
-                 p2p_ipv6 ='2000:2000:0::0/120', loopback_ipv6 ='2000:2000:10::0/120'):
+                 p2p_ipv6 ='FD00:2000:0::0/120', loopback_ipv6 ='FD00:2000:10::0/120'):
 
         self.p2p_ipv4 = ip_network(p2p_ipv4)
         self.loopback_ipv4 = ip_network(loopback_ipv4)

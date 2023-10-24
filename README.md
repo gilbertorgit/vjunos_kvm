@@ -43,7 +43,7 @@ Following these instructions will enable you to obtain a copy of the project, al
 This test lab has been built and tested using:
 
 ```
-1. Ubuntu 20.04 LTS
+1. Ubuntu 20.04 LTS or 22.04.3
 2. Server with:
   2.1. 128GB RAM
   2.2. I9 with 14 Cores and Intel(R) Xeon(R) Gold 5218 CPU @ 2.30GHz
