@@ -48,7 +48,7 @@ Consider these use cases to determine the appropriate configuration option based
 
 ## Topology examples
 
-Please check the **how_to** folder for further details on how to build your topology from scratch.
+Please check **how_to** folder for further details on how to build your topology from scratch.
 
 <p align="center">
   Example 1 - DC 5-Clos with vjunos-switch, VR vSRX3 (Simulate Customers) and Apstra

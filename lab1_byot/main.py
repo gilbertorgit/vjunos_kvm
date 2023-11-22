@@ -37,6 +37,7 @@ class MainScript:
         """
         self.interface_sets = [
             {'interfaces': "S-", 'start': INTERFACE_START, 'stop': INTERFACE_STOP},
+            {'interfaces': "D-", 'start': INTERFACE_START, 'stop': INTERFACE_STOP},
             {'interfaces': "dummy-", 'start': INTERFACE_START, 'stop': INTERFACE_STOP},
             {'interfaces': "fabric-", 'start': INTERFACE_START, 'stop': INTERFACE_STOP},
         ]
