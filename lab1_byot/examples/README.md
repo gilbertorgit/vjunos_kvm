@@ -52,20 +52,26 @@ Please check **how_to** folder for further details on how to build your topology
 
 <p align="center">
   Example 1 - DC 5-Clos with vjunos-switch, VR vSRX3 (Simulate Customers) and Apstra
+  cp examples/example1.xlsx lab1_device_info.xlsx 
   <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example1.png">
   
   Example 2 - DC with vjunos-switch, VR vSRX3 (Simulate Customers) and Apstra
+  cp examples/example2.xlsx lab1_device_info.xlsx 
   <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example2.png">
 
   Example 3 - DC 3-Clos with vjunos-switch, VR vSRX3 (Simulate Customers) and Apstra
+  cp examples/example3.xlsx lab1_device_info.xlsx 
   <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example3.png">
 
   Example 4 - DC 3-Clos with vjunos-evolved, VR vSRX3 (Simulate Customers) and Apstra
+  cp examples/example4.xlsx lab1_device_info.xlsx 
   <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example4.png">
 
   Example 5 - DC 3-Clos with vjunos-evolved, VR vSRX3 (Simulate Customers) and Apstra
+  cp examples/example5.xlsx lab1_device_info.xlsx 
   <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example5.png">
 
   Example 6 - DC 3-Clos with vjunos-switch and vjunos-evolved, Core with vjunos-router, VR vSRX3 (Router Reflector and Customers), Apstra and CentOS Linux
+  cp examples/example6.xlsx lab1_device_info.xlsx 
   <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example6.png">
 </p>

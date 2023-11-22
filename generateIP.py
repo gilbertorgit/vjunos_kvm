@@ -166,6 +166,10 @@ class GenerateIpAddr:
         for key, value in merge_dict.items():
             for key1, value1 in db.items():
                 for i in value1['data']:
+                    if i['type'].upper() == 'VMX-VCP':
+                        hostname = i['hostname']
+                        mgmt_ip = i['mgmt_ip']
+
                     if i['type'].upper() == 'VROUTER':
                         hostname = i['hostname']
                         mgmt_ip = i['mgmt_ip']

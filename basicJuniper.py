@@ -398,6 +398,81 @@ class BasicJuniper:
 
                     sleep(10)
 
+    def create_vmx(self, data):
+
+        """
+        Create vMX (Official) - Juniper
+        """
+
+        print("-" * 120)
+        print("-" * 50, "Creating vMX")
+
+        a = BasicConfigTemplateJuniper()
+
+        db = data
+
+        for key, value in db.items():
+            for i in value['data']:
+
+                if i['type'] == 'vmx-vcp':
+                    version = i['version']
+                    hostname = i['hostname']
+                    mgmt_int = i['mgmt_int']
+                    mgmt_ip = i['mgmt_ip']
+                    fabric_int = self.peek_first_interface('fabric_interfaces.txt')
+
+                    print("-" * 30, f"Creating: {hostname}/{mgmt_ip}")
+
+                    vcp_img = f'{hostname}.qcow2'
+                    hdd_img = f'{hostname}_hdd.img'
+                    metadata_img = f'{hostname}_metadata.img'
+                    copy_vcp = f'cp {self.source_images}vmx-{version}/*.qcow2 ' \
+                               f'{self.libvirt_images_path}{vcp_img}'
+                    copy_hdd = f'cp {self.source_images}vmx-{version}/vmxhdd.img ' \
+                               f'{self.libvirt_images_path}{hdd_img}'
+                    copy_metadata = f'cp {self.source_images}vmx-{version}/metadata-usb-re.img ' \
+                                    f'{self.libvirt_images_path}{metadata_img}'
+                    subprocess.call(copy_vcp, shell=True)
+                    subprocess.call(copy_hdd, shell=True)
+                    subprocess.call(copy_metadata, shell=True)
+
+                    change_permission = f'chmod 755 {self.libvirt_images_path}*'
+                    subprocess.call(change_permission, shell=True)
+
+                    virt_data = generate_virt_template_vcp(hostname, self.libvirt_images_path, mgmt_int,
+                                                           fabric_int, vcp_img, hdd_img,metadata_img)
+                    # pprint.pp(virt_data)  # to debug
+
+                    # print(virt_data)
+                    subprocess.run(virt_data, shell=True)
+
+                    sleep(15)
+
+                if i['type'] == 'vmx-vfp':
+                    version = i['version']
+                    hostname = i['hostname']
+                    fabric_int = self.get_and_remove_first_interface('fabric_interfaces.txt')
+
+                    int_values = {k: v for k, v in i.items() if k.startswith('ge-')}
+                    int_values, _ = self.update_interfaces(int_values, 'dummy_interfaces.txt')
+
+                    print("-" * 30, f"Creating: {hostname}")
+
+                    vfp_img = f'{hostname}.img'
+                    copy_vfp = f'cp {self.source_images}vmx-{version}/vFPC-*.img ' \
+                               f'{self.libvirt_images_path}{vfp_img}'
+                    subprocess.call(copy_vfp, shell=True)
+
+                    change_permission = f'chmod 755 {self.libvirt_images_path}*'
+                    subprocess.call(change_permission, shell=True)
+
+                    virt_data = generate_virt_template_vfp(hostname, self.libvirt_images_path, replacement_int,
+                                                           fabric_int, int_values,vfp_img)
+                    # pprint.pp(virt_data)  # to debug
+                    subprocess.run(virt_data, shell=True)
+
+                    sleep(15)
+
     def clean_ssh_hosts(self):
 
         """

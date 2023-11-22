@@ -20,7 +20,7 @@ BRIDGE_ECHO = 16384
 #BRIDGE_ECHO = 65535
 INTERFACE_START = 1
 INTERFACE_STOP = 101
-DEVICE_TAB_LIST = ('SRX', 'VROUTER', 'VEX', 'VEVO', 'APSTRA', 'LINUX')
+DEVICE_TAB_LIST = ('VMX', 'SRX', 'VROUTER', 'VEX', 'VEVO', 'APSTRA', 'LINUX')
 
 
 class MainScript:
@@ -96,6 +96,7 @@ class MainScript:
         vlab1_data.generate_data_info('lab1_device_info.xlsx', *DEVICE_TAB_LIST)
 
         dict_list = [
+            ('vmx', vlab1_data.get_vmx),
             ('vsrx', vlab1_data.get_srx),
             ('vrouter', vlab1_data.get_vrouter),
             ('vex', vlab1_data.get_vex),
@@ -193,6 +194,7 @@ class MainScript:
         dict_list = self.create_data()
 
         device_list_map = {
+            'vmx': vlab1.create_vmx,
             'vsrx': vlab1.create_srx,
             'vrouter': vlab1.create_vjunos_router,
             'vex': vlab1.create_vex,
@@ -213,9 +215,15 @@ class MainScript:
                 else:
                     print(f"Unknown type: {name}")
 
-        # Check connectivity
-        vlab1conf = DevicesConfig()
+        # Wait virtual machines
         self.countdown(420)
+
+        # Check connectivity and configure vMX through console
+        vlab1conf = DevicesConfig()
+
+        vlab1_data = GenerateData()
+        vmx_dict = vlab1_data.get_vmx
+        vlab1conf.vmx_console_cfg(vmx_dict)
 
         print("-" * 50, "Test MGMT Connectivity")
         for name, data_dict in dict_list:

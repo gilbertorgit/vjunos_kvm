@@ -35,7 +35,7 @@ class ConfigureJuniperDevice:
 
     def get_data(self):
 
-        device_tab_list = ('SRX', 'VROUTER', 'VEX', 'VEVO')
+        device_tab_list = ('VMX', 'SRX', 'VROUTER', 'VEX', 'VEVO')
         vlab1_data = GenerateData()
         tab_list = device_tab_list
         vlab1_data.generate_data_info('../lab1_byot/lab1_device_info.xlsx', *tab_list)

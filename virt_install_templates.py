@@ -184,3 +184,55 @@ def generate_virt_template_vjunos_router(hostname, images_path, mgmt_int, int_va
 {network_bridge_str}'''
 
     return install_vm
+
+
+def generate_virt_template_vcp(hostname, images_path, mgmt_int, fabric_int, vcp_img, hdd_img, metadata_img):
+
+    install_vm = f'''virt-install \\
+--name {hostname} \\
+--accelerate \\
+--import \\
+--ram=2048 \\
+--vcpus=1,threads=1,cores=1 \\
+--arch x86_64 \\
+--machine=pc \\
+--cpu host \\
+--features acpi=on,apic=on,pae=on \\
+--sysinfo smbios,bios_vendor=Juniper,system_manufacturer=VMX,system_product=VM-vcp_vmx1-161-re-0,system_version=0.1.0 \\
+--disk path={images_path}{vcp_img},cache=directsync,bus=virtio,format=qcow2 \\
+--disk path={images_path}{hdd_img},cache=directsync,bus=virtio,format=qcow2 \\
+--disk path={images_path}{metadata_img},cache=directsync,bus=virtio,format=raw \\
+--graphics vnc,listen=0.0.0.0 \\
+--noautoconsole \\
+--os-variant generic \\
+--network bridge={mgmt_int},model=virtio \\
+--network bridge={fabric_int},model=virtio'''
+
+    return install_vm
+
+
+def generate_virt_template_vfp(hostname, images_path, replacement_int, fabric_int, int_values, vfp_img):
+    network_bridges = []
+    for int_key, int_val in int_values.items():
+        network_bridges.append(f'--network bridge={int_val},model=virtio,mtu.size=9600')
+    network_bridge_str = ' \\\n'.join(network_bridges)
+
+    install_vm = f'''virt-install \\
+--name {hostname} \\
+--accelerate \\
+--import \\
+--ram=2048 \\
+--vcpus=3,threads=1,cores=3 \\
+--numatune mode=preferred,nodeset=0 \\
+--arch x86_64 \\
+--hvm --cpu host \\
+--features acpi=on,apic=off \\
+--disk path={images_path}{vfp_img},cache=directsync,bus=ide \\
+--graphics vnc,listen=0.0.0.0 \\
+--noautoconsole \\
+--os-variant generic \\
+--network bridge={replacement_int},model=virtio \\
+--network bridge={fabric_int},model=virtio \\
+{network_bridge_str}'''
+
+    return install_vm
