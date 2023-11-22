@@ -454,7 +454,7 @@ class BasicJuniper:
                     fabric_int = self.get_and_remove_first_interface('fabric_interfaces.txt')
 
                     int_values = {k: v for k, v in i.items() if k.startswith('ge-')}
-                    int_values, _ = self.update_interfaces(int_values, 'dummy_interfaces.txt')
+                    int_values, replacement_int = self.update_interfaces(int_values, 'dummy_interfaces.txt')
 
                     print("-" * 30, f"Creating: {hostname}")
 
