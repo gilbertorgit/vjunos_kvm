@@ -4,6 +4,14 @@
 
 **gilbertorgit**
 
+- Draw the topology. 
+- Fill the interfaces with S-Xs and D-Xs interfaces. 
+- Replicate it in a spreadsheet. 
+- Copy the spreadsheet to the examples folder, so you can have the original topology saved for later use. 
+- Copy the example to the main spreadsheet, located in the main project folder: vjunos_kvm/lab1_byot/lab1_device_info.xlsx. 
+- Run the script and have fun!
+
+
 1. Draw the Topology
    - You can use any tool, such as PowerPoint, Visio etc.,
 
@@ -26,7 +34,7 @@
 </p>
 
 4. Copy the example to the main spreadsheet
-   - cp examples/example5.xlsx lab1_device_info.xlsx 
+   - cp examples/example5.xlsx **lab1_device_info.xlsx** 
 
 5. Run the script and have fun
    - python main.py

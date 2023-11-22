@@ -48,10 +48,6 @@ This test lab has been built and tested using:
   2.1. 128GB RAM
   2.2. I9 with 14 Cores and Intel(R) Xeon(R) Gold 5218 CPU @ 2.30GHz
   2.3. 500GB - SSD
-3. vjunos-switch-23.1R1.7
-4. vmx-22.4R1.10
-5. apstra-4.1.2-269
-6. CentOS-7-x86_64-GenericCloud.qcow2
 ```
 
 ***Please note that while we are downloading and copying packages and configurations within the /home/lab user directory, it's important to mention that I am using root user access for each step described here.***
@@ -121,11 +117,11 @@ shutdown -r now
 ### Supported Images
 
 * vSRX: https://support.juniper.net/support/downloads/?p=vsrx3
-* vEX -> vJunos-Switch: https://support.juniper.net/support/downloads/?p=vjunos
-* vMX -> vJunos-Router: TBC
+* vJunos-Switch: https://support.juniper.net/support/downloads/?p=vjunos
+* vJunos-Router: TBC
+* vJunosEvolved -> https://support.juniper.net/support/downloads/?p=vjunos-evolved
 * Apstra - > AOS: https://support.juniper.net/support/downloads/?p=apstra
 * Linux -> Centos-Generic-Cloud: https://cloud.centos.org/centos/7/images/ - CentOS-7-x86_64-GenericCloud.qcow2
-* vJunosEvolved -> https://support.juniper.net/support/downloads/?p=vjunos-evolved
 
 **Please copy all the images to the /opt/src_virtual_lab_images directory. An example is provided below:**
 

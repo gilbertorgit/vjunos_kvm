@@ -6,9 +6,10 @@
 
 ## Description
 To create a baseline configuration, there are two essential elements to consider:
-1. Devices with CORE and/or REFLECTOR roles (refer to the spreadsheet for details)
+1. Configure **CORE**, **CORE,REFLECTOR**, **VR** or **DC** roles - Define a roles IS A MUST
+2. Configure **S-Xs** or **D-Xs** virtual interfaces - Define a virtual interface IS NOT A MUST! You just need to fill the interfaces you need with S-Xs(S-1, S-2, etc.,) or D-Xs(D-1, D-2, etc.,) interfaces
 
-When a device is configured with 'CORE' and/or 'REFLECTOR' role assigned, the script is capable of configuring P2P physical addresses using IPv4 /31 and IPv6 /127 subnets and additional configuration options are available, such as - topology based on ISIS, OSPF with MPLS enabled, etc., 
+When a device is configured with **S-Xs** interface and **CORE** or **CORE,REFLECTOR** role assigned , the script is capable of configuring P2P physical addresses using IPv4 /31 and IPv6 /127 subnets and additional configuration options are available, such as - topology based on ISIS, OSPF with MPLS enabled, etc., 
 
 By combining these elements, you gain the ability to create a comprehensive baseline configuration. 
 Refer to Options 5, 6, 7, and 8 for further details.
@@ -22,9 +23,9 @@ Select the appropriate option based on your requirements and network setup.
 
 **Currently supported roles:**
 * CORE: Applies baseline configuration to the device.
-* CORE, REFLECTOR: Configures the device with baseline settings and creates the BGP Router Reflector role.
-* VR: Future use - The script does not take any action for this role.
-* DC: Future use - The script does not take any action for this role.
+* CORE,REFLECTOR: Configures the device with baseline settings and creates the BGP Router Reflector role.
+* VR: The script does not take any action for this role.
+* DC: The script does not take any action for this role.
 These roles define the specific configuration and actions performed by the script. 
 The CORE role applies the baseline configuration, while the CORE, REFLECTOR role additionally configures the device as a BGP Router Reflector. 
 The VR and DC roles are reserved for future use and are currently not utilized by the script.
@@ -46,6 +47,8 @@ These use cases outline different scenarios and options based on the roles assig
 Consider these use cases to determine the appropriate configuration option based on the specific setup of your network.
 
 ## Topology examples
+
+Please check the **how_to** folder for further details on how to build your topology from scratch.
 
 <p align="center">
   Example 1 - DC 5-Clos with vjunos-switch, VR vSRX3 (Simulate Customers) and Apstra
