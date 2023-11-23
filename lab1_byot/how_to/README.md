@@ -34,7 +34,7 @@
 </p>
 
 4. Copy the example to the main spreadsheet
-   - cp examples/example5.xlsx **lab1_device_info.xlsx** 
+   - cp examples/new_topology_10.xlsx **lab1_device_info.xlsx** (this spreadsheet is located at the main lab1_byot folder -> /home/lab/vjunos_kvm/lab1_byot/)
 
 5. Run the script and have fun
    - python main.py

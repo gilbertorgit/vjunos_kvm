@@ -103,6 +103,12 @@ Select one Option: 3 ->>> Will create from scratch
 ---------------------------
 ```
 ## Tip - How to build your topology:
-Check below a few tips to create a topology from scratch
+- Draw the topology. 
+- Fill the interfaces with S-Xs and D-Xs interfaces. 
+- Replicate it in a spreadsheet. 
+- Copy the spreadsheet to the examples folder, so you can have the original topology saved for later use. 
+- Copy the example to the main spreadsheet, located in the main project folder: vjunos_kvm/lab1_byot/lab1_device_info.xlsx. 
+- Run the script and have fun!
 
+**Check the link below for a few tips on creating a topology from scratch**
 https://github.com/gilbertorgit/vjunos_kvm/tree/main/lab1_byot/how_to

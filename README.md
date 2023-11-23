@@ -8,6 +8,7 @@ We are not reinventing the wheel it is just a personal project to help deploying
   * vjunos-router
   * vJunos-Evolved
   * vSRX3
+  * vMX
   * Apstra
   * CentOS
 
@@ -28,7 +29,7 @@ We are not reinventing the wheel it is just a personal project to help deploying
     * **To**
       * bridge_echo = 16384
 
-* To compile the kernel, you can refer to the following resources or documentation for detailed instructions:
+* Although the purpose of this project is not to teach how to compile the kernel, as there are many references available on this topic, you can refer to the following documentation for instructions:"
  * Ubuntu 20.04 - https://github.com/gilbertorgit/kernel-20-04
 
 ## Considerations
@@ -120,6 +121,7 @@ shutdown -r now
 * vJunos-Switch: https://support.juniper.net/support/downloads/?p=vjunos
 * vJunos-Router: TBC
 * vJunosEvolved -> https://support.juniper.net/support/downloads/?p=vjunos-evolved
+* vMX: https://support.juniper.net/support/downloads/?p=vmx
 * Apstra - > AOS: https://support.juniper.net/support/downloads/?p=apstra
 * Linux -> Centos-Generic-Cloud: https://cloud.centos.org/centos/7/images/ - CentOS-7-x86_64-GenericCloud.qcow2
 
@@ -153,21 +155,45 @@ For example:
 
 **Below is a complete example:** 
 ```
+
+## Create directories
 mkdir /opt/src_virtual_lab_images/apstra-4.1.2-269
+
 mkdir /opt/src_virtual_lab_images/linux
+
 mkdir /opt/src_virtual_lab_images/vjunos-switch-23.2R1.14
+
 mkdir /opt/src_virtual_lab_images/vjunos-router-23.2R1.14
+
 mkdir /opt/src_virtual_lab_images/vsrx3-23.1R1.8
+
 mkdir /opt/src_virtual_lab_images/vjunos-evolved-23.2R1.15
 
+mkdir /opt/src_virtual_lab_images/vmx-22.4R2.8
+
+
+## Move images
 mv CentOS-7-x86_64-GenericCloud.qcow2 /opt/src_virtual_lab_images/linux
+
 mv junos-vsrx3-x86-64-23.1R1.8.qcow2 /opt/src_virtual_lab_images/vsrx3-23.1R1.8
+
 mv vJunos-switch-23.2R1.14.qcow2 /opt/src_virtual_lab_images/vjunos-switch-23.2R1.14
+
 mv vJunos-router-23.2R1.14.qcow2 /opt/src_virtual_lab_images/vjunos-router-23.2R1.14
+
 mv vJunosEvolved-23.2R1.15.qcow2  /opt/src_virtual_lab_images/vjunos-evolved-23.2R1.15
+
 
 gunzip aos_server_4.1.2-269.qcow2.gz
 mv aos_server_4.1.2-269.qcow2 /opt/src_virtual_lab_images/apstra-4.1.2-269
+
+
+tar -xzvf vmx-bundle-22.4R2.8.tgz
+mv vmx/images/junos-vmx-x86-64-22.4R2.8.qcow2 /opt/src_virtual_lab_images/vmx-22.4R2.8/
+mv vmx/images/vmxhdd.img /opt/src_virtual_lab_images/vmx-22.4R2.8/
+mv vmx/images/metadata-usb-re.img /opt/src_virtual_lab_images/vmx-22.4R2.8/
+mv vmx/images/vFPC-20221102.img /opt/src_virtual_lab_images/vmx-22.4R2.8/
+
 ```
 
 **Below is an example of the directory tree structure with a few directories:**
@@ -180,6 +206,7 @@ drwxr-xr-x 2 root root       4096 Jun 19 10:51 apstra-4.1.2-269
 drwxr-xr-x 2 root root       4096 Jun 19 10:49 linux
 drwxr-xr-x 2 root root       4096 Sep 21 13:54 vjunos-evolved-23.2R1.15
 drwxr-xr-x 2 root root       4096 Sep 21 13:57 vjunos-switch-23.2R1.14
+drwxr-xr-x 2 root root 4096 Jun 15 19:21 vmx-22.4R2.8
 drwxr-xr-x 2 root root       4096 Jun 19 10:49 vsrx3-23.1R1.8
 
 /opt/src_virtual_lab_images/apstra-4.1.2-269:
@@ -197,6 +224,13 @@ total 1865604
 /opt/src_virtual_lab_images/vjunos-evolved-23.2R1.15:
 total 1701124
 -rw-r--r-- 1 root root 1741946880 Aug  3 06:32 vJunosEvolved-23.2R1.15.qcow2
+
+/opt/src_virtual_lab_images/vmx-22.4R2.8:
+total 9855308
+-rw-r--r-- 1 930 930 1191313408 Mar 19 06:35 junos-vmx-x86-64-22.4R2.8.qcow2
+-rw-r--r-- 1 930 930   10485760 Feb  3 10:03 metadata-usb-re.img
+-rw-r--r-- 1 930 930 8889827328 Feb  3 10:03 vFPC-20221102.img
+-rw-r--r-- 1 930 930     196736 Feb  3 10:03 vmxhdd.img
 
 /opt/src_virtual_lab_images/vsrx3-23.1R1.8:
 total 828420
