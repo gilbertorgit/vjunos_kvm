@@ -561,7 +561,7 @@ class BasicJuniper:
 
         for key, value in db.items():
             for i in value['data']:
-                if i['type'].upper() == 'VEX' or 'VROUTER' or 'VEVO':
+                if i['type'].upper() == 'VEX' or i['type'].upper() == 'VROUTER' or i['type'].upper() == 'VEVO':
                     hostname = i['hostname']
                     mgmt_ip = i['mgmt_ip']
                     print(f"- Shutdown: {hostname} \n")

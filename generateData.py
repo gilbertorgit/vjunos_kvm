@@ -105,7 +105,7 @@ class GenerateData:
         """
 
         self._merged_data = self.get_vmx
-        self._merged_data = self.get_vrouter
+        self._merged_data.update(self.get_vrouter)
         self._merged_data.update(self.get_srx)
         self._merged_data.update(self.get_vex)
         self._merged_data.update(self.get_vevo)
