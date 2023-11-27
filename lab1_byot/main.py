@@ -149,21 +149,32 @@ class MainScript:
         tab_list = DEVICE_TAB_LIST
         vlab1_data.generate_data_info('lab1_device_info.xlsx', *tab_list)
         vex_dict = vlab1_data.get_vex
+        vevo_dict = vlab1_data.get_vevo
+        vrouter_dict = vlab1_data.get_vrouter
 
         # Shutdown vjunos-switch
+        if vex_dict:
+            vlab1.shutdown_vjunos(vex_dict)
+            print("Wait 30 seconds to shutdown vjunos-switch")
+            self.countdown(10)
 
-        # if vex_dict:
-        #     vlab1.shutdown_vjunos(vex_dict)
-        #     print("Wait 30 seconds to shutdown vjunos-switch")
-        #     self.countdown(10)
+        if vevo_dict:
+            vlab1.shutdown_vjunos(vevo_dict)
+            print("Wait 30 seconds to shutdown vjunos-evolved")
+            self.countdown(10)
+
+        if vrouter_dict:
+            vlab1.shutdown_vjunos(vrouter_dict)
+            print("Wait 30 seconds to shutdown vjunos-router")
+            self.countdown(10)
 
         dict_list = self.create_data()
 
-        for name, data_dict in dict_list:
-            if data_dict:
-                vlab1.shutdown_vjunos(data_dict)
-                print("Wait 10 seconds to shutdown vjunos")
-                self.countdown(10)
+        # for name, data_dict in dict_list:
+        #     if data_dict:
+        #         vlab1.shutdown_vjunos(data_dict)
+        #         print("Wait 10 seconds to shutdown vjunos")
+        #         self.countdown(10)
 
         for name, data_dict in dict_list:
             if data_dict:

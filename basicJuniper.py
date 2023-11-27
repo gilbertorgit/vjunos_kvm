@@ -567,7 +567,7 @@ class BasicJuniper:
                     print(f"- Shutdown: {hostname} \n")
 
                     poweroff_device(mgmt_ip, port=port, user=user, password=password)
-
+                    
 
 if __name__ == "__main__":
     pass
