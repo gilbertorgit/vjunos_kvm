@@ -241,3 +241,80 @@ total 828420
 
 * lab1_byot -> https://github.com/gilbertorgit/vjunos_kvm/tree/main/lab1_byot
 
+## VMX Workaround
+
+As mentioned, this project is for lab purposes. Due to the nature of the VMX image, which is resource-intensive, deploying load of VMX images on the same server can lead to issues. 
+These may include problems with the VMX image itself, syncing issues between VCP and VFP, or challenges with basic configurations that scripts typically handle via the console.
+Therefore, if you encounter issues with VMX, you may need to configure it manually.
+
+### 1 - Boot issues
+
+Due to unexpected reasons, often related to disk performance, the VMX may not boot properly at times, and you might encounter connectivity errors. These typically appear when the script is checking the connectivity and/or generating the baseline configuration to be saved into the virtual devices.
+
+You can verify this by attempting to log in via console as the "lab" user. If there's an issue, you might encounter an error like the one shown below: 
+```
+md9.uzip: UZIP(zlib) inflate() failed
+g_vfs_done():md9.uzip[READ(offset=75661312, length=2048)]error = 86
+vm_fault: pager read error, pid 23069 (cli)
+pid 23069 (cli), uid (0):  Path `/var/tmp/cli.core.4.gz' failed on initial open test, error = 14
+```
+
+If this is the case, there is no need to recreate the entire topology. However, you should reboot the affected devices one by one to resolve the issue. It is recommended to perform this process individually and then verify connectivity after each reboot.
+
+To do so, you must connect as a root user using console and reboot the VCP virtual image only. Here are the steps:
+
+1. Use the command virsh console <domain> (for example, lab1_vcp_r6)
+2. Enter the username and password (root/juniper123)
+3. Issue the reboot command"
+
+### 2 - Problem with Basic Configuration provided by the script
+
+The script may fail to configure the basic settings, and you might receive an 'unreachable' status at the end of the configuration script.
+In that case, you will need to apply the basic configuration manually.
+
+1. Use the command virsh console <domain> (for example, lab1_vcp_r6)
+2. Enter the username "root" and enter
+3. Enter: "cli" and "edit"
+4. Start configuring the VMX based on the information you have provided in your spreadsheet. 
+
+**Below is the basic configuration you need to apply:**
+```
+set system host-name <HOSTNAME>
+set system root-authentication encrypted-password "$1$aic0re1C$iga3zkJvFaG7rP7tDP/P91"
+set system commit synchronize
+set system login user lab uid 2000
+set system login user lab class super-user
+set system login user lab authentication encrypted-password "$1$aic0re1C$i719d/4ZQchOhadfrUQxR."
+set system services ssh root-login allow
+set system services netconf ssh
+set system syslog file interactive-commands interactive-commands any
+set system syslog file messages any notice
+set system syslog file messages authorization info
+set interfaces fxp0 unit 0 family inet address <MGMT_IP>
+set protocols lldp port-id-subtype interface-name
+set protocols lldp interface all
+```
+
+### 3 - VCP - VFP Sync
+
+Sometimes, you may face interface issues, where there is no interface up (ge-0/0/0, ge-0/0/1, etc.,). It may be related with VCP and VFP sync.
+You can find information about it in Juniper VMX official documentation. 
+
+In that case, please check the below. 
+
+1. Use the command virsh console <domain> (for example, lab1_vcp_r6)
+2. Enter the username "root" or "lab"
+3. Verify "show chassis FPC" and "show interfaces terse" to verify if the interfaces are up
+4. If you have an output different from the below, you may need to reboot the VFP and VCP images
+lab@lab3_pod1_leaf_1> show chassis fpc 
+                     Temp  CPU Utilization (%)   CPU Utilization (%)  Memory    Utilization (%)
+Slot State            (C)  Total  Interrupt      1min   5min   15min  DRAM (MB) Heap     Buffer
+  0  Online           Testing   3         0        3      3      3    1023       19          0
+
+* It's worth mentioning that VCP and VFP may take some time to sync. However, this is usually completed by the time the script finishes
+```
+virsh vcp_image_name destroy
+virsh vfp_image_name destroy
+virsh vcp_image_name start
+virsh vfp_image_name start
+```

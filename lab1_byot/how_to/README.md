@@ -7,10 +7,13 @@
 - Draw the topology. 
 - Fill the interfaces with S-Xs and D-Xs interfaces. 
 - Replicate it in a spreadsheet. 
+  - If you have edited the DHCP range in the default virbr0, as recommended, remember to configure MGMT IPs starting from .101. 
+  - When configuring VMX, it is good practice to include vcp and vfp0 in the hostname, so you can differentiate the images, as shown in the example below:
+    - **lab1_vcp_r1**
+    - **lab1_vfp0_r1**
 - Copy the spreadsheet to the examples folder, so you can have the original topology saved for later use. 
 - Copy the example to the main spreadsheet, located in the main project folder: vjunos_kvm/lab1_byot/lab1_device_info.xlsx. 
 - Run the script and have fun!
-
 
 1. Draw the Topology
    - You can use any tool, such as PowerPoint, Visio etc.,
