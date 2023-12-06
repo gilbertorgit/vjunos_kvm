@@ -306,11 +306,12 @@ In that case, please check the below.
 2. Enter the username "root" or "lab"
 3. Verify "show chassis FPC" and "show interfaces terse" to verify if the interfaces are up
 4. If you have an output different from the below, you may need to reboot the VFP and VCP images
+```
 lab@lab3_pod1_leaf_1> show chassis fpc 
                      Temp  CPU Utilization (%)   CPU Utilization (%)  Memory    Utilization (%)
 Slot State            (C)  Total  Interrupt      1min   5min   15min  DRAM (MB) Heap     Buffer
   0  Online           Testing   3         0        3      3      3    1023       19          0
-
+```
 * It's worth mentioning that VCP and VFP may take some time to sync. However, this is usually completed by the time the script finishes
 ```
 virsh vcp_image_name destroy
