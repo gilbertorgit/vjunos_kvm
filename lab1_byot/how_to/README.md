@@ -8,7 +8,7 @@
 - Fill the interfaces with S-Xs and D-Xs interfaces. 
 - Replicate it in a spreadsheet. 
   - If you have edited the DHCP range in the default virbr0, as recommended, remember to configure MGMT IPs starting from .101. 
-  - When configuring VMX, it is good practice to include vcp and vfp0 in the hostname, so you can differentiate the images, as shown in the example below:
+  - When configuring VMX, it is good practice to include vcp and vfp0 in the hostname, so you can differentiate the images, as shown in the example below. Check the examples folder where you will find spreadsheets with examples on how to create your own topology
     - **lab1_vcp_r1**
     - **lab1_vfp0_r1**
 - Copy the spreadsheet to the examples folder, so you can have the original topology saved for later use. 
