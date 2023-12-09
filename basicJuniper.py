@@ -450,7 +450,7 @@ class BasicJuniper:
                     copy_hdd = f'cp {self.source_images}vmx-{version}/vmxhdd.img ' \
                                f'{self.libvirt_images_path}{hdd_img}'
                     copy_metadata = f'cp {self.source_images}vmx-{version}/metadata-usb-re.img ' \
-                                    # f'{self.libvirt_images_path}{metadata_img}'
+                                    f'{self.libvirt_images_path}{metadata_img}'
                     subprocess.call(copy_vcp, shell=True)
                     subprocess.call(copy_hdd, shell=True)
                     subprocess.call(copy_metadata, shell=True)
