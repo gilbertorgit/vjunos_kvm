@@ -453,7 +453,7 @@ class BasicJuniper:
                                     # f'{self.libvirt_images_path}{metadata_img}'
                     subprocess.call(copy_vcp, shell=True)
                     subprocess.call(copy_hdd, shell=True)
-                    # subprocess.call(copy_metadata, shell=True)
+                    subprocess.call(copy_metadata, shell=True)
 
                     change_permission = f'chmod 755 {self.libvirt_images_path}*'
                     subprocess.call(change_permission, shell=True)
