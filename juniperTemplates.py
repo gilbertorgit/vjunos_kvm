@@ -254,3 +254,54 @@ interfaces {{
 
 '''
         return data
+
+    def vjunos_vmx(self, hostname: str, mgmt_ip: str):
+        data = f'''system {{
+host-name {hostname};
+root-authentication {{
+    encrypted-password "$6$hXR.HhNZ$wucEC0vqdUOzmm5Ksh2VN7dNehtqmX6qZODNr/rPCKWNH7ROG17PcnFYC82YSjPavNxGV11B7kxG/.KLU1bX20";
+}}
+login {{
+    user lab {{
+        uid 2000;
+        class super-user;
+        authentication {{
+            encrypted-password "$6$OGL6QqZR$oo0Cob3mTYEuvwejqT/.jDz3K003TJmyoSGfpT0NdwyIOKfSNxFdbVJDWhP17XGUbiDpp/kLK2LZKTnaUffvW0";
+        }}
+    }}
+}}
+services {{
+    ssh {{
+        root-login allow;
+    }}
+    netconf {{
+        ssh;
+    }}
+}}
+syslog {{
+    file interactive-commands {{
+        interactive-commands any;
+    }}
+    file messages {{
+        any notice;
+        authorization info;
+    }}
+}}
+}}
+chassis {{
+    fpc 0 {{
+        lite-mode;
+    }}
+}}
+interfaces {{
+    fxp0 {{
+        unit 0 {{
+            family inet {{
+                address {mgmt_ip}/24;
+            }}
+        }}
+    }}
+}}
+
+'''
+        return data

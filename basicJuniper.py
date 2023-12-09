@@ -423,18 +423,37 @@ class BasicJuniper:
 
                     print("-" * 30, f"Creating: {hostname}/{mgmt_ip}")
 
+                    # Get template with variables
+                    config = a.vjunos_vmx(hostname, mgmt_ip)
+
+                    # Create a local file with config - metadata.img
+                    config_name = '../config/juniper.conf'
+                    to_file = open(config_name, 'w')
+                    to_file.write(config)
+                    to_file.close()
+
+                    # make-config.sh executable
+                    per_make_config = f'chmod 755 ../config/make-config.sh'
+                    subprocess.call(per_make_config, shell=True)
+
+                    # Define config disk name and generate disk
+                    metadata_img = f'{hostname}_metadata.img'
+                    script_path = f'../config/make-config.sh'
+                    create_disk_config = f'{script_path} {config_name} {self.libvirt_images_path}{metadata_img}'
+                    subprocess.call(create_disk_config, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
+
                     vcp_img = f'{hostname}.qcow2'
                     hdd_img = f'{hostname}_hdd.img'
-                    metadata_img = f'{hostname}_metadata.img'
+                    # metadata_img = f'{hostname}_metadata.img'
                     copy_vcp = f'cp {self.source_images}vmx-{version}/*.qcow2 ' \
                                f'{self.libvirt_images_path}{vcp_img}'
                     copy_hdd = f'cp {self.source_images}vmx-{version}/vmxhdd.img ' \
                                f'{self.libvirt_images_path}{hdd_img}'
-                    copy_metadata = f'cp {self.source_images}vmx-{version}/metadata-usb-re.img ' \
-                                    f'{self.libvirt_images_path}{metadata_img}'
+                    # copy_metadata = f'cp {self.source_images}vmx-{version}/metadata-usb-re.img ' \
+                                    # f'{self.libvirt_images_path}{metadata_img}'
                     subprocess.call(copy_vcp, shell=True)
                     subprocess.call(copy_hdd, shell=True)
-                    subprocess.call(copy_metadata, shell=True)
+                    # subprocess.call(copy_metadata, shell=True)
 
                     change_permission = f'chmod 755 {self.libvirt_images_path}*'
                     subprocess.call(change_permission, shell=True)

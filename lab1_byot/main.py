@@ -235,8 +235,10 @@ class MainScript:
         vlab1_data = GenerateData()
         tab_list = DEVICE_TAB_LIST
         vlab1_data.generate_data_info('lab1_device_info.xlsx', *tab_list)
-        vmx_dict = vlab1_data.get_vmx
-        vlab1conf.vmx_console_cfg(vmx_dict)
+
+        # Old code for vmx console
+        # vmx_dict = vlab1_data.get_vmx
+        # vlab1conf.vmx_console_cfg(vmx_dict)
 
         print("-" * 50, "Test MGMT Connectivity")
         for name, data_dict in dict_list:
