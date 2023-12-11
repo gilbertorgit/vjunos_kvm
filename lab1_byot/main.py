@@ -216,7 +216,8 @@ class MainScript:
 
         for name, data_dict in dict_list:
             if data_dict:
-                print(f"Creating {name}...")
+                # to debug
+                # print(f"Creating {name}...")
                 create_to_call = device_list_map.get(name)
                 if create_to_call:
                     try:
@@ -237,8 +238,8 @@ class MainScript:
         vlab1_data.generate_data_info('lab1_device_info.xlsx', *tab_list)
 
         # Old code for vmx console
-        vmx_dict = vlab1_data.get_vmx
-        vlab1conf.vmx_console_cfg(vmx_dict)
+        #vmx_dict = vlab1_data.get_vmx
+        #vlab1conf.vmx_console_cfg(vmx_dict)
 
         print("-" * 50, "Test MGMT Connectivity")
         for name, data_dict in dict_list:
