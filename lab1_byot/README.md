@@ -65,6 +65,7 @@ python main.py <option>
 8. Configure Interfaces only: python main.py 8 
 9. Load Baseline Config: python main.py 9 
 10. Save Config: python main.py 10
+11. Create Router baseline config: python main.py 11
 
 
 * Please, check the examples folder where you can find further info and topology examples. You can just copy/past and have a ready-to-go topology
@@ -98,6 +99,8 @@ python main.py
 9 - Load Baseline Config - Overwrite current configuration with baseline config
 
 10 - Save Config
+
+11 - Create Router baseline config
 
 Select one Option: 3 ->>> Will create from scratch
 ---------------------------
