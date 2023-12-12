@@ -6,7 +6,7 @@ We are not reinventing the wheel it is just a personal project to help deploying
 * Supported Images:
   * vjunos-switch
   * vjunos-router
-  * vJunos-Evolved
+  * vJunos-Evolved from version **23.2R1-S1.8** 
   * vSRX3
   * vMX
   * Apstra
@@ -167,7 +167,7 @@ mkdir /opt/src_virtual_lab_images/vjunos-router-23.2R1.14
 
 mkdir /opt/src_virtual_lab_images/vsrx3-23.1R1.8
 
-mkdir /opt/src_virtual_lab_images/vjunos-evolved-23.2R1.15
+mkdir /opt/src_virtual_lab_images/vjunos-evolved-23.2R1-S1.8
 
 mkdir /opt/src_virtual_lab_images/vmx-22.4R2.8
 
@@ -181,7 +181,7 @@ mv vJunos-switch-23.2R1.14.qcow2 /opt/src_virtual_lab_images/vjunos-switch-23.2R
 
 mv vJunos-router-23.2R1.14.qcow2 /opt/src_virtual_lab_images/vjunos-router-23.2R1.14
 
-mv vJunosEvolved-23.2R1.15.qcow2  /opt/src_virtual_lab_images/vjunos-evolved-23.2R1.15
+mv vJunosEvolved-23.2R1.15.qcow2  /opt/src_virtual_lab_images/vjunos-evolved-23.2R1-S1.8
 
 
 gunzip aos_server_4.1.2-269.qcow2.gz
@@ -204,7 +204,7 @@ root@kvm-server:/home/lab/vjunos_kvm# ls -lR /opt/src_virtual_lab_images/
 total 1110328
 drwxr-xr-x 2 root root       4096 Jun 19 10:51 apstra-4.1.2-269
 drwxr-xr-x 2 root root       4096 Jun 19 10:49 linux
-drwxr-xr-x 2 root root       4096 Sep 21 13:54 vjunos-evolved-23.2R1.15
+drwxr-xr-x 2 root root       4096 Sep 21 13:54 vjunos-evolved-23.2R1-S1.8
 drwxr-xr-x 2 root root       4096 Sep 21 13:57 vjunos-switch-23.2R1.14
 drwxr-xr-x 2 root root 4096 Jun 15 19:21 vmx-22.4R2.8
 drwxr-xr-x 2 root root       4096 Jun 19 10:49 vsrx3-23.1R1.8
@@ -219,7 +219,7 @@ total 881732
 
 /opt/src_virtual_lab_images/vjunos-evolved-23.1R1.8:
 total 1865604
--rw-r--r-- 1 root root 1910374400 May  9 19:00 vJunosEvolved-23.1R1.8.qcow2
+-rw-r--r-- 1 root root 1910374400 May  9 19:00 vJunosEvolved-23.2R1-S1.8.qcow2
 
 /opt/src_virtual_lab_images/vjunos-evolved-23.2R1.15:
 total 1701124
@@ -241,13 +241,14 @@ total 828420
 
 * lab1_byot -> https://github.com/gilbertorgit/vjunos_kvm/tree/main/lab1_byot
 
-## VMX Workaround
+
+## Virtual Devices - Workaround
 
 As mentioned, this project is for lab purposes. Due to the nature of the VMX image, which is resource-intensive, deploying load of VMX images on the same server can lead to issues. 
 These may include problems with the VMX image itself, syncing issues between VCP and VFP, or challenges with basic configurations that scripts typically handle via the console.
 Therefore, if you encounter issues with VMX, you may need to configure it manually.
 
-### 1 - Boot issues
+### 1 - VMX Boot issues
 
 Due to unexpected reasons, often related to disk performance, the VMX may not boot properly at times, and you might encounter connectivity errors. These typically appear when the script is checking the connectivity and/or generating the baseline configuration to be saved into the virtual devices.
 
@@ -267,7 +268,7 @@ To do so, you must connect as a root user using console and reboot the VCP virtu
 2. Enter the username and password (root/juniper123)
 3. Issue the reboot command"
 
-### 2 - Problem with Basic Configuration provided by the script
+### 2 - VMX Problem with Basic Configuration provided by the script
 
 The script may fail to configure the basic settings, and you might receive an 'unreachable' status at the end of the configuration script.
 In that case, you will need to apply the basic configuration manually.
@@ -295,7 +296,7 @@ set protocols lldp port-id-subtype interface-name
 set protocols lldp interface all
 ```
 
-### 3 - VCP - VFP Sync
+### 3 - VMX VCP - VFP Sync
 
 Sometimes, you may face interface issues, where there is no interface up (ge-0/0/0, ge-0/0/1, etc.,). It may be related with VCP and VFP sync.
 You can find information about it in Juniper VMX official documentation. 
@@ -318,4 +319,26 @@ virsh vcp_image_name destroy
 virsh vfp_image_name destroy
 virsh vcp_image_name start
 virsh vfp_image_name start
+```
+
+### 4 - Test script -> unreachable status 
+
+In case you are deploying a large number of VMs, it may take more time than usual to finish the process for all the VMs and get them to a fully running stage. In these cases, you may observe that many or most of the VMs are listed as 'unreachable.'
+
+'Unreachable' means that the test script attempted to ping the VM but was unable to reach the destination due to an unexpected reason. 
+This could be due to any of the issues mentioned above, a problem during the VM setup process, or because the VMs were not yet ready.
+
+It's advisable to connect through the console to check if the VM is functioning correctly, whether the configuration is in place, and if you can reach the gateway, etc.
+
+You can use the same process described above to connect to the VM's console and check its status.
+
+```
+-------------------------------------------------- Test MGMT Connectivity
+lab1_vcp_r1 - MGMT Network: 192.168.122.51 is unreachable
+lab1_vcp_r2 - MGMT Network: 192.168.122.52 is unreachable
+lab1_vcp_r3 - MGMT Network: 192.168.122.53 is unreachable
+lab1_vcp_r4 - MGMT Network: 192.168.122.54 is unreachable
+lab1_vcp_r5 - MGMT Network: 192.168.122.55 is unreachable
+lab3_pod1_leaf_1 - MGMT Network: 192.168.122.61 is unreachable
+lab3_pod1_leaf_2 - MGMT Network: 192.168.122.62 is unreachable
 ```

@@ -350,8 +350,10 @@ class BasicJuniper:
                     hostname = i['hostname']
                     mgmt_ip = i['mgmt_ip']
                     mgmt_int = i['mgmt_int']
-                    pfe_link = self.get_and_remove_first_interface('fabric_interfaces.txt')
-                    rpio_link = self.get_and_remove_first_interface('fabric_interfaces.txt')
+
+                    # Old config - version before 23.2
+                    #pfe_link = self.get_and_remove_first_interface('fabric_interfaces.txt')
+                    #rpio_link = self.get_and_remove_first_interface('fabric_interfaces.txt')
 
                     # Old fix interfaces columns
                     # int_values = {f'int{j}': i[f'et-0/0/{j}'] for j in range(12)}
@@ -391,8 +393,13 @@ class BasicJuniper:
                     change_permission = f'chmod 755 {self.libvirt_images_path}*'
                     subprocess.call(change_permission, shell=True)
 
-                    virt_data = generate_virt_template_vevo(hostname, self.libvirt_images_path, mgmt_int, pfe_link,
-                                                            rpio_link, int_values, vm_img, vm_config,channelized)
+                    # Old config - version before 23.2
+                    # virt_data = generate_virt_template_vevo(hostname, self.libvirt_images_path, mgmt_int, pfe_link,
+                    #                                         rpio_link, int_values, vm_img, vm_config,channelized)
+
+                    virt_data = generate_virt_template_vevo(hostname, self.libvirt_images_path, mgmt_int,
+                                                            int_values, vm_img, vm_config, channelized)
+
                     # pprint.pp(virt_data)  # to debug
                     subprocess.run(virt_data, shell=True)
 
