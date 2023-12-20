@@ -105,9 +105,9 @@ Please check **how_to** folder for further details on how to build your topology
 
   Example 7 - Simple Core with 4x vMX, VR(To simulate customers) 1x vSRX3 
   cp examples/example6.xlsx lab1_device_info.xlsx 
-  <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example6.png">
+  <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example7.png">
 
   Example 8 - Core topology with 6x vMX and VR(To simulate customers) 1x vSRX3
   cp examples/example6.xlsx lab1_device_info.xlsx 
-  <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example6.png">
+  <img src="https://github.com/gilbertorgit/vjunos_kvm/blob/main/lab1_byot/images/example8.png">
 </p>
