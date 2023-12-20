@@ -298,7 +298,23 @@ class ConfigureJuniperDevice:
         db = self.loopback_data
 
         for k, v in db.items():
-            if 'CORE' in v['role'].upper():
+            if 'CORE' in v['role'].upper() and 'LER' in v['role'].upper():
+                hostname = v['hostname']
+                mgmt_ip = v['mgmt_ip']
+                ipv4 = v['loopback_int']['lo0']['loopback_ipv4']
+                ipv6 = v['loopback_int']['lo0']['loopback_ipv6']
+
+                data_dict = {
+                    'ipv4': ipv4,
+                    'ipv6': ipv6,
+                }
+
+                data = basic_bgp(**data_dict)
+                print(f'-------Configuring {hostname}/({mgmt_ip}) Basic BGP -> group ibgp')
+                # print(data)
+                self.device_request(data, mgmt_ip, user='lab', password='lab123')
+
+            if 'CORE' in v['role'].upper() and 'REFLECTOR' in v['role'].upper():
                 hostname = v['hostname']
                 mgmt_ip = v['mgmt_ip']
                 ipv4 = v['loopback_int']['lo0']['loopback_ipv4']
@@ -333,7 +349,7 @@ class ConfigureJuniperDevice:
                     router_reflector_ip = v1['loopback_int']['lo0']['loopback_ipv4']
 
                     for k, v in db.items():
-                        if 'CORE' in v['role'].upper():
+                        if 'CORE' in v['role'].upper() and 'LER' in v['role'].upper():
                             if 'REFLECTOR' not in v['role'].upper():
 
                                 hostname = v['hostname']
@@ -348,6 +364,8 @@ class ConfigureJuniperDevice:
                                 # print(data)
                                 self.device_request(data, mgmt_ip, user='lab', password='lab123')
                                 data = ''
+
+        # Logic for full mesh IBGP - Basically, if there is no role reflector configured, it will create a full mesh when there is a core + ler
         else:
             for k1, v1 in db.items():
                 data = ''
@@ -392,7 +410,7 @@ class ConfigureJuniperDevice:
                 data += bgp_ibgp_rr_cluster(router_reflector_ip)
 
                 for k, v in db.items():
-                    if 'CORE' in v['role'].upper():
+                    if 'CORE' in v['role'].upper() and 'LER' in v['role'].upper():
                         if 'REFLECTOR' not in v['role'].upper():
                             ipv4 = v['loopback_int']['lo0']['loopback_ipv4']
 
