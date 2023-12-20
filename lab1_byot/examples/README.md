@@ -37,8 +37,9 @@ Select the appropriate option based on your requirements and network setup.
 * DC: The script does not take any action for this role.
 
 **These roles define the specific configuration and actions performed by the script.**
-* The CORE role enables the script to apply the Additional configuration but BGP
-* The CORE,LER role enables the script to apply the Additional configuration
+* The CORE role enables the script to apply the Additional configuration but BGP.
+* The CORE,LER role enables the script to apply the Additional configuration including BGP peering.
+  * LER -> Label Edge Router, but it does not need to be a PE router. It can be any router you want to have BGP peering
 * The CORE,REFLECTOR role additionally configures the device as a BGP Router Reflector. 
 * The VR and DC roles are reserved for future use and are currently not utilized by the script.
 
@@ -53,8 +54,6 @@ Select the appropriate option based on your requirements and network setup.
 * MPLS(LDP,RSVP)
 * BGP Config
 * Next-Hop Self - BGP Policy
-
-**REFLECTOR only is not supported** 
 
 Use cases:
 * When a topology has no 'CORE'/'CORE,LER'/'CORE,REFLECTOR' roles and 'S-Xs' interfaces, no configuration will be applied. 
