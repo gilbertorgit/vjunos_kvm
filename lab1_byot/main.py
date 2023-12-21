@@ -278,7 +278,6 @@ class MainScript:
         """
     
         print("#" * 150)
-        print("#" * 100, "Apply lab1_byot ISIS base configuration")
 
         """
         Create topology with ISIS as IGP
@@ -288,6 +287,7 @@ class MainScript:
         a = MainScript()
         a.configure_baseline()
 
+        print("#" * 100, "Apply lab1_byot ISIS base configuration")
         dev = self.create_and_configure_device()
         dev.get_data()
         dev.configure_loopback_interface_iso()
@@ -303,7 +303,6 @@ class MainScript:
         Applies an OSPF base configuration to the topology.
         """
         print("#" * 150)
-        print("#" * 100, "Apply lab1_byot OSPF base configuration")
 
         """
         Create topology with OSPF as IGP
@@ -318,7 +317,7 @@ class MainScript:
         #
         # # Call configureJuniperDevice, which will configure a lot of things
         # dev = ConfigureJuniperDevice(number_int, interface_start)
-
+        print("#" * 100, "Apply lab1_byot OSPF base configuration")
         dev = self.create_and_configure_device()
         dev.get_data()
         dev.configure_loopback_interface()
@@ -334,7 +333,6 @@ class MainScript:
         Applies a basic P2P and Loopback interfaces configuration with ISO support.
         """
         print("#" * 150)
-        print("#" * 100, "Apply lab1_byot P2P and Loopback basic configuration with ISIS support")
 
         """
         Configure interfaces loopback and p2p only - IPv4 and IPv6 and ISO
@@ -344,6 +342,7 @@ class MainScript:
         a = MainScript()
         a.configure_baseline()
 
+        print("#" * 100, "Apply lab1_byot P2P and Loopback basic configuration with ISIS support")
         dev = self.create_and_configure_device()
         dev.get_data()
         dev.configure_loopback_interface_iso()
@@ -364,6 +363,7 @@ class MainScript:
         a = MainScript()
         a.configure_baseline()
 
+        print("#" * 100, "Apply lab1_byot P2P and Loopback basic configuration")
         dev = self.create_and_configure_device()
         dev.get_data()
         dev.configure_loopback_interface()
