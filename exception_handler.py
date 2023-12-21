@@ -136,13 +136,15 @@ def handle_create_baseline_config(mgmt_ip, port, user, password):
             break
         except (ConnectionError, ConnectTimeoutError, NoValidConnectionsError) as err:
             print(f'Cannot connect to device: {err}')
-            print("------------->>>> Try performing Option 11: Create Router baseline config or investigate it further")
+            print(f'Investigate it further')
+            print("------------->>>> Before use options 5-8 performing option 11 to create basic config file inside the virtual router, otherwise you will have issues when using these options")
 
             print("-- Waiting 3 seconds before try again")
             time.sleep(3) # If connection fails, wait for 3 seconds before trying again
         except Exception as err:
             print(f"An unexpected error occurred: {err}")
-            print("------------->>>> Try performing Option 11: Create Router baseline config or investigate it further")
+            print(f'Investigate it further')
+            print("------------->>>> Before use options 5-8 performing option 11 to create basic config file inside the virtual router, otherwise you will have issues when using these options")
             break
 
 
