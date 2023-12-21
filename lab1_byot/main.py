@@ -284,6 +284,10 @@ class MainScript:
         Create topology with ISIS as IGP
         """
 
+        print("- Load basic config first")
+        a = MainScript()
+        a.configure_baseline()
+
         dev = self.create_and_configure_device()
         dev.get_data()
         dev.configure_loopback_interface_iso()
@@ -304,6 +308,10 @@ class MainScript:
         """
         Create topology with OSPF as IGP
         """
+
+        print("- Load basic config first")
+        a = MainScript()
+        a.configure_baseline()
 
         # # Define number of interfaces
         # number_int = (interface_stop - interface_start) + 1
@@ -332,6 +340,10 @@ class MainScript:
         Configure interfaces loopback and p2p only - IPv4 and IPv6 and ISO
         """
 
+        print("- Load basic config first")
+        a = MainScript()
+        a.configure_baseline()
+
         dev = self.create_and_configure_device()
         dev.get_data()
         dev.configure_loopback_interface_iso()
@@ -347,6 +359,10 @@ class MainScript:
         """
         Configure interfaces loopback and p2p only - IPv4 and IPv6
         """
+
+        print("- Load basic config first")
+        a = MainScript()
+        a.configure_baseline()
 
         dev = self.create_and_configure_device()
         dev.get_data()

@@ -371,12 +371,12 @@ class ConfigureJuniperDevice:
                 data = ''
                 data2 = ''
                 ip_list = ''
-                if 'CORE' in v1['role'].upper():
+                if 'CORE' in v1['role'].upper() and 'LER' in v1['role'].upper():
                     hostname = v1['hostname']
                     mgmt_ip = v1['mgmt_ip']
                     ipv4 = v1['loopback_int']['lo0']['loopback_ipv4']
                     for k, v in db.items():
-                        if 'CORE' in v['role'].upper():
+                        if 'CORE' in v['role'].upper()  and 'LER' in v['role'].upper():
                             ipv4_neighbor = v['loopback_int']['lo0']['loopback_ipv4']
                             if ipv4 != ipv4_neighbor:
                                 data2 += bgp_ibgp_neighbor_client(ipv4_neighbor)

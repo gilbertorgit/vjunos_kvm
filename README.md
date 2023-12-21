@@ -266,7 +266,10 @@ To do so, you must connect as a root user using console and reboot the VCP virtu
 
 1. Use the command virsh console <domain> (for example, lab1_vcp_r6)
 2. Enter the username and password (root/juniper123)
-3. Issue the reboot command"
+3. Issue the reboot command or virsh destroy <domain> + virsh start <domain>
+
+Make sure you run option 11 to generate the baseline config, so you can use option 9 in case you want to load the basic configuration (MGMT_IP + Hostname)
+
 
 ### 2 - VMX Problem with Basic Configuration provided by the script
 
@@ -296,6 +299,9 @@ set protocols lldp port-id-subtype interface-name
 set protocols lldp interface all
 ```
 
+Make sure you run option 11 to generate the baseline config, so you can use option 9 in case you want to load the basic configuration (MGMT_IP + Hostname)
+
+
 ### 3 - VMX VCP - VFP Sync
 
 Sometimes, you may face interface issues, where there is no interface up (ge-0/0/0, ge-0/0/1, etc.,). It may be related with VCP and VFP sync.
@@ -320,6 +326,8 @@ virsh vfp_image_name destroy
 virsh vcp_image_name start
 virsh vfp_image_name start
 ```
+
+Make sure you run option 11 to generate the baseline config, so you can use option 9 in case you want to load the basic configuration (MGMT_IP + Hostname)
 
 ### 4 - Test script -> unreachable status 
 
