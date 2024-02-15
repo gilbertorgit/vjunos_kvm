@@ -10,9 +10,12 @@ import subprocess
 from re import search
 from time import sleep
 from exception_handler import *
-
 import time
 
+from basicJuniper import BasicJuniper
+
+# Variable for Linux VM Size - Change it if you need more virtual disk space
+linux_vmx_size = '15G'
 
 class BasicInfra:
 
@@ -281,6 +284,88 @@ class BasicInfra:
         print("-" * 120)
         print("-" * 50, "Creating Hosts VMs")
 
+        db = data
+
+        a = BasicJuniper('lab1_device_info.xlsx')
+
+        for key, value in db.items():
+            for i in value['data']:
+                if i['type'] == 'centos' or i['type'] == 'ubuntu':
+                    type = i['type']
+                    version = i['version']
+                    hostname = i['hostname']
+
+                    int_values = {k: v for k, v in i.items() if k.startswith('eth')}
+                    int_values, _ = a.update_interfaces(int_values, 'dummy_interfaces.txt')
+
+                    print("-" * 30, f"Creating: {hostname}")
+
+                    vm_img = f'{hostname}.qcow2'
+
+                    if i['type'] == 'centos':
+                        copy_vm = f'cp {self.source_images}{type}-{int(version)}/*.qcow2 ' \
+                                  f'{self.libvirt_images_path}{vm_img}'
+
+                        # Image used to expand the linux - will be deleted at the end of the routine
+                        copy_vm_original = f'cp {self.source_images}{type}-{int(version)}/*.qcow2 ' \
+                                           f'{self.libvirt_images_path}original.qcow2'
+
+                        run_command(copy_vm)
+                        run_command(copy_vm_original)
+                        # create_img = f'qemu-img create -f qcow2 -o preallocation=metadata {self.libvirt_images_path}{vm_img} {linux_vmx_size}'
+                        create_img = f'qemu-img create -f qcow2 {self.libvirt_images_path}{vm_img} {linux_vmx_size}'
+                        exapand_img = f'virt-resize --expand /dev/sda1 {self.libvirt_images_path}original.qcow2 {self.libvirt_images_path}{vm_img}'
+                        add_metadata = f'genisoimage -output {self.libvirt_images_path}{hostname}-config.iso -volid cidata ' \
+                                       f'-joliet -r vm_config/{hostname}/user-data ' \
+                                       f'vm_config/{hostname}/meta-data'
+
+                        run_command(create_img)
+                        run_command(exapand_img)
+                        run_command(add_metadata)
+
+                    if i['type'] == 'ubuntu':
+                        # copy_vm = f'cp {self.source_images}{type}-{version}/*.img ' \
+                        #           f'{self.libvirt_images_path}{vm_img}'
+
+                        # Image used to expand the linux - will be deleted at the end of the routine
+                        copy_vm_original = f'cp {self.source_images}{type}-{version}/*.img {self.libvirt_images_path}original.qcow2'
+
+                        # subprocess.call(copy_vm, shell=True)
+                        run_command(copy_vm_original)
+
+                        create_img = f'qemu-img create -b {self.source_images}{type}-{version}/*.img -f qcow2 -F qcow2 {self.libvirt_images_path}{vm_img} {linux_vmx_size}'
+                        run_command(create_img)
+                        sleep(1)
+                        add_metadata = f'genisoimage -output {self.libvirt_images_path}{hostname}-config.iso -volid cidata -joliet -r vm_config/{hostname}/user-data vm_config/{hostname}/meta-data'
+                        run_command(add_metadata)
+
+                    change_permission = f'chmod 755 {self.libvirt_images_path}*'
+                    run_command(change_permission)
+
+                    network_bridges = []
+                    for int_key, int_val in int_values.items():
+                        network_bridges.append(f'--network bridge={int_val},model=e1000,mtu.size=9600')
+                    network_bridge_str = ' \\\n'.join(network_bridges)
+
+                    install_c_vm = f'''virt-install --import --name {hostname} \\
+                                            --memory 1024 \\
+                                            --vcpus=1 \\
+                                            --disk path={self.libvirt_images_path}{vm_img},format=qcow2,bus=virtio \\
+                                            --disk path={self.libvirt_images_path}{hostname}-config.iso,device=cdrom \\
+                                            --os-variant=generic \\
+                                            --graphics vnc,listen=0.0.0.0 \\
+                                            --noautoconsole \\
+                                            --accelerate \\
+                                            {network_bridge_str}'''
+                    run_command(install_c_vm)
+
+
+        delete_vm_original = f'rm -f {self.libvirt_images_path}original.qcow2'
+        subprocess.call(delete_vm_original, shell=True)
+
+        # OLD LINUX CONFIG - 14/FEB/2024
+
+        """
         # Copy generic centos to /var/lib/libvirt/images/ - we need it once we use this base image to create the vms
 
         generic_centos = '/var/lib/libvirt/images/CentOS-7-x86_64-GenericCloud.qcow2'
@@ -346,6 +431,7 @@ class BasicInfra:
                         --accelerate'
                         # call command from exception_handler
                         run_command(install_c_vm)
+        """
 
     def delete_virtual_lab(self, data):
 

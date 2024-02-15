@@ -159,7 +159,11 @@ For example:
 ## Create directories
 mkdir /opt/src_virtual_lab_images/apstra-4.1.2-269
 
-mkdir /opt/src_virtual_lab_images/linux
+mkdir /opt/src_virtual_lab_images/centos-7
+
+mkdir /opt/src_virtual_lab_images/ubuntu-20.04
+
+mkdir /opt/src_virtual_lab_images/ubuntu-22.04
 
 mkdir /opt/src_virtual_lab_images/vjunos-switch-23.2R1.14
 
@@ -203,7 +207,9 @@ root@kvm-server:/home/lab/vjunos_kvm# ls -lR /opt/src_virtual_lab_images/
 /opt/src_virtual_lab_images/:
 total 1110328
 drwxr-xr-x 2 root root       4096 Jun 19 10:51 apstra-4.1.2-269
-drwxr-xr-x 2 root root       4096 Jun 19 10:49 linux
+drwxr-xr-x 2 root root      4096 Feb 14 13:59 centos-7
+drwxr-xr-x 2 root root      4096 Feb 14 16:42 ubuntu-20.04
+drwxr-xr-x 2 root root      4096 Feb 14 16:44 ubuntu-22.04
 drwxr-xr-x 2 root root       4096 Sep 21 13:54 vjunos-evolved-23.2R1-S1.8
 drwxr-xr-x 2 root root       4096 Sep 21 13:57 vjunos-switch-23.2R1.14
 drwxr-xr-x 2 root root 4096 Jun 15 19:21 vmx-22.4R2.8
@@ -213,9 +219,17 @@ drwxr-xr-x 2 root root       4096 Jun 19 10:49 vsrx3-23.1R1.8
 total 2762612
 -rw-r--r-- 1 root root 2828908544 Jan 12  2023 aos_server_4.1.2-269.qcow2
 
-/opt/src_virtual_lab_images/linux:
+/opt/src_virtual_lab_images/centos-7:
 total 881732
--rw-r--r-- 1 root root 902889472 Nov 12  2022 CentOS-7-x86_64-GenericCloud.qcow2
+-rw-r--r-- 1 root root 902889472 Feb 14 13:59 CentOS-7-x86_64-GenericCloud.qcow2
+
+/opt/src_virtual_lab_images/ubuntu-20.04:
+total 628100
+-rw-r--r-- 1 libvirt-qemu kvm 643170304 Feb  7 22:26 focal-server-cloudimg-amd64.img
+
+/opt/src_virtual_lab_images/ubuntu-22.04:
+total 661252
+-rw-r--r-- 1 libvirt-qemu kvm 677117952 Feb  7 02:58 jammy-server-cloudimg-amd64.img
 
 /opt/src_virtual_lab_images/vjunos-evolved-23.1R1.8:
 total 1865604

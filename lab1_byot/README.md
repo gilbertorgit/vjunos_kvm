@@ -5,6 +5,9 @@
 **gilbertorgit**
 
 ## Important Information
+
+**Always check WHATSNEW folder for updates**
+
 1. The python script provided in this guide allows for the creation, deletion, start, and stop of all resources within the topology.
 2. It is crucial to maintain the names and file paths exactly as shown here to avoid potential issues.
 3. Ensure that you use the specified versions of the images, as using different versions may lead to complications.
