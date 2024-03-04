@@ -20,8 +20,10 @@ To consume new functionalities please, update the project as there have been cha
   - Ubuntu Example: (validated with Jammy and Focal)
     - mkdir ubuntu-20.04 
       - cp focal-server-cloudimg-amd64.img /opt/src_virtual_lab_images/ubuntu-20.04/
+      - http://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img
     - mkdir ubuntu-22.04
       - cp jammy-server-cloudimg-amd64.img /opt/src_virtual_lab_images/ubuntu-22.04/
+      - http://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
 
 **December 2023**
 - New roles support

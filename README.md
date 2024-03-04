@@ -10,7 +10,11 @@ We are not reinventing the wheel it is just a personal project to help deploying
   * vSRX3
   * vMX
   * Apstra
-  * CentOS
+  * CentOS 7 - Cloud Image
+    * https://cloud.centos.org/centos/7/images/
+  * Ubuntu - Cloud Image
+    * http://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img
+    * http://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
 
 ## Authors
 
