@@ -179,6 +179,7 @@ mkdir /opt/src_virtual_lab_images/vjunos-evolved-23.2R1-S1.8
 
 mkdir /opt/src_virtual_lab_images/vmx-22.4R2.8
 
+mkdir /opt/src_virtual_lab_images/vmx-23.2R2-S1.3
 
 ## Move images
 mv CentOS-7-x86_64-GenericCloud.qcow2 /opt/src_virtual_lab_images/linux
@@ -201,6 +202,14 @@ mv vmx/images/junos-vmx-x86-64-22.4R2.8.qcow2 /opt/src_virtual_lab_images/vmx-22
 mv vmx/images/vmxhdd.img /opt/src_virtual_lab_images/vmx-22.4R2.8/
 mv vmx/images/metadata-usb-re.img /opt/src_virtual_lab_images/vmx-22.4R2.8/
 mv vmx/images/vFPC-20221102.img /opt/src_virtual_lab_images/vmx-22.4R2.8/
+rm -rf vmx
+
+tar -xzvf vmx-bundle-23.2R2-S1.3.tgz 
+mv vmx/images/junos-vmx-x86-64-23.2R2-S1.3.qcow2 /opt/src_virtual_lab_images/vmx-23.2R2-S1.3
+mv vmx/images/vmxhdd.img /opt/src_virtual_lab_images/vmx-23.2R2-S1.3
+mv vmx/images/metadata-usb-re.img /opt/src_virtual_lab_images/vmx-23.2R2-S1.3
+mv vmx/images/vFPC-20240508.img /opt/src_virtual_lab_images/vmx-23.2R2-S1.3 
+rm -rf vmx
 
 ```
 
@@ -249,6 +258,13 @@ total 9855308
 -rw-r--r-- 1 930 930   10485760 Feb  3 10:03 metadata-usb-re.img
 -rw-r--r-- 1 930 930 8889827328 Feb  3 10:03 vFPC-20221102.img
 -rw-r--r-- 1 930 930     196736 Feb  3 10:03 vmxhdd.img
+
+/opt/src_virtual_lab_images/vmx-23.2R2-S1.3:
+total 9802124
+-rw-r--r-- 1 930 930 1136852992 Jun  7 05:58 junos-vmx-x86-64-23.2R2-S1.3.qcow2
+-rw-r--r-- 1 930 930   10485760 May  9 03:19 metadata-usb-re.img
+-rw-r--r-- 1 930 930 8889827328 May  9 03:19 vFPC-20240508.img
+-rw-r--r-- 1 930 930     196736 May  9 03:19 vmxhdd.img
 
 /opt/src_virtual_lab_images/vsrx3-23.1R1.8:
 total 828420
